@@ -1,0 +1,273 @@
+
+/* base.html ---------------------------------------------------------*/
+
+body {
+  margin: 0;
+  padding: 0;
+  color: #1a1a1a;
+  font-family: 'Noto Sans JP', sans-serif;
+  background: #ebeae9;
+}
+header {
+  width: 100%;
+  height: 100px;
+  background: rgb(126, 126, 126);
+  display: flex; /* flexboxを作る */
+  align-items: center; /* 上下中央に揃える */
+  justify-content: space-between; /* 両端に配置 */
+  padding-left: 30px;
+  padding-right: 30px;
+  position: fixed;
+  top: 0;
+  box-sizing: border-box;
+}
+h1 a {
+  color: #1a1a1a;
+  font-size: 70px;
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+  display: flex;
+}
+ul li a {
+  padding: 10px 15px;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 30px;
+}
+ul li a:hover {
+  text-decoration: underline;
+}
+
+.content {
+  margin-top: 100px;
+  margin-right: auto;
+  margin-left : auto;
+  width: 1190px;
+}
+
+
+/* index.html ---------------------------------------------------------*/
+.index-flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.box {
+  width: 350px;
+  height: 160px;
+  margin: 10px 20px 10px 20px;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  
+}
+
+.imagebox {
+  width: 350px;
+  height: 100px;
+  border: 1px solid rgb(146, 146, 146);
+  box-sizing: border-box;
+}
+.namebox {
+  width: 350px;
+  height: 60px;
+  border: 1px solid rgb(146, 146, 146);
+  border-top: none;
+  box-sizing: border-box;
+  align-items: center;
+  
+}
+.namebox h1 {
+  margin: 10px 0 0 0;
+  text-align: center;
+  font-size: 26px;
+  vertical-align: middle;
+}
+
+.sfc {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.selectbox {
+  margin-top: 10px;
+}
+
+.category-box-container {
+  width: 150px;
+  height: 710px;
+  border: 1px solid rgb(146, 146, 146);
+  border-right: none;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(248, 248, 248);
+}
+
+.category-box {
+  width: 130px;
+  height: 50px;
+  border: 1px solid rgb(212, 212, 212);
+  box-sizing: border-box;
+  background-color: rgb(255, 255, 255);
+}
+.category-box h1{
+  margin: 0;
+  font-size: 18px;
+  text-align: center;
+  line-height: 50px
+}
+
+.c-active {
+  background-color: rgb(184, 228, 253);
+  border: none;
+  
+}
+
+
+
+.name-box-container{
+  width: 740px;
+  height: 710px;
+  border: 1px solid rgb(146, 146, 146);
+  border-right: none;
+  box-sizing: border-box;
+  background-color: rgb(248, 248, 248);
+  
+}
+
+.s-name {
+  display: none;
+}
+.show {
+  display: block;
+}
+
+.category-name {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 10px 0 10px;
+  margin: 3px;
+  border: 1px solid rgb(212, 212, 212);
+  background-color: rgb(233, 248, 255);
+  height: 50px;
+}
+
+.category-name p{
+  margin: 0;
+  padding-top: 10px;
+}
+
+
+
+.order-box-container {
+  width: 280px;
+  height: 710px;
+  border: 1px solid rgb(146, 146, 146);
+  box-sizing: border-box;
+  background-color: rgb(248, 248, 248);
+}
+
+.cancel-button {
+  height: 50px;
+  background-color: lightcoral;
+  border: 1px solid rgb(212, 212, 212);
+  margin: 1px;
+  font-size: 30px;
+  text-align: center;
+  padding-top: 5px;
+}
+
+.order-box {
+  display: flex;
+}
+
+
+
+.order-box-m{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border: 1px solid rgb(212, 212, 212);
+  margin: 1px;
+  background-color: rgb(215, 255, 215);
+  width: 274px;
+}
+
+.order-box-m p{
+  margin: 0;
+}
+
+.reception {
+  align-items: center;
+  border: 1px solid rgb(212, 212, 212);
+  margin: 1px;
+}
+
+.order-form {
+  height: 545px;
+  overflow-y: scroll;
+}
+
+.order-form input {
+  width: 250px;
+  border: none;
+}
+
+.reception input{
+  width: 274px;
+  height: 100px;
+  background-color: rgb(231, 169, 169);
+  border: none;
+  font-size: 30px;
+}
+
+.element{
+  flex-shrink: 0;
+}
+
+
+/* patient --------------------------------------------------------- */
+
+.first-or-return-flex-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+  
+.first-or-return-flex {
+  width: 400px;
+  height: 200px;
+  background-color: seagreen;
+  margin: 20px;
+  text-align: center;
+}
+.first-or-return-flex h1 {
+  margin: 0;
+}
+
+.ic-or-noneic-flex-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ic-or-noneic-flex {
+  width: 400px;
+  height: 200px;
+  background-color: seagreen;
+  margin: 20px;
+  text-align: center;
+}
+.ic-or-noneic-flex h1 {
+  margin: 0;
+}

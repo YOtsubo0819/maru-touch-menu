@@ -1,0 +1,161 @@
+{% extends 'order/base.html' %}
+{% block title %}index{% endblock %}
+{% block contents %}
+{% if user.is_authenticated %}
+    <div class="index-flex-container">
+        {% load static%}
+        <div class="box box-1"><div class="imagebox"><img src="{% static 'img/渡航ワクチン.jpg' %}" width="348" height="98"></div><div class="namebox"><h1>渡航ワクチン</h1></div></div>
+        <div class="box box-2"><div class="imagebox"><img src="{% static 'img/美容健康注射.jpg' %}" width="348" height="98"></div><div class="namebox"><h1>美容健康注射</h1></div></div>
+        <div class="box box-3"><div class="imagebox"><img src="{% static 'img/ビタミン剤.jpg' %}" width="348" height="98"></div><div class="namebox"><h1>ビタミン剤</h1></div></div>
+        <div class="box box-4"><div class="imagebox"><img src="{% static 'img/一般ワクチン.jpg' %}" width="348" height="98"></div><div class="namebox"><h1>一般ワクチン</h1></div></div>
+        <div class="box box-5"><div class="imagebox"><img src="{% static 'img/アフターピル・低用量ピル.jpg' %}" width="348" height="98"></div><div class="namebox"><h1>アフターピル・低用量ピル</h1></div></div>
+        <div class="box box-6"><div class="imagebox"><img src="{% static 'img/美容薬品.jpg' %}" width="348" height="98"></div><div class="namebox"><h1>美容薬品</h1></div></div>
+        <div class="box box-7"><div class="imagebox"><img src="{% static 'img/トラベル予防薬.jpg' %}" width="348" height="98"></div><div class="namebox"><h1>トラベル予防薬</h1></div></div>
+        <div class="box box-8"><div class="imagebox"><img src="{% static 'img/ED治療薬.jpg' %}" width="348" height="98"></div><div class="namebox"><h1>ED治療薬</h1></div></div>
+        <div class="box box-9"><div class="imagebox"><img src="{% static 'img/ヘルスチェック・健康診断.jpg' %}" width="348" height="98"></div><div class="namebox"><h1>ヘルスチェック・健康診断</h1></div></div>
+        <div class="box box-10"><div class="imagebox"><img src="{% static 'img/疲労回復注射.jpg' %}" width="348" height="98"></div><div class="namebox"><h1>疲労回復注射</h1></div></div>
+        <div class="box box-11"><div class="imagebox"><img src="{% static 'img/AGA治療薬.jpg' %}" width="348" height="98"></div><div class="namebox"><h1>AGA治療薬</h1></div></div>
+        <div class="box box-12"><div class="imagebox"><img src="{% static 'img/その他・ご相談.jpg' %}" width="348" height="98"></div><div class="namebox"><h1>その他・ご相談</h1></div></div>
+    </div>
+
+    <div class="sfc">
+        <div class="selectbox category-box-container">
+            <div class="category-box c-box-1"><h1>渡航ワクチン</h1></div>
+            <div class="category-box c-box-2"><h1>美容健康注射</h1></div>
+            <div class="category-box c-box-3"><h1>ビタミン剤</h1></div>
+            <div class="category-box c-box-4"><h1>一般ワクチン</h1></div>
+            <div class="category-box c-box-5"><h1 style="font-size: 15px; line-height: 25px;">アフターピル・低用量ピル</h1></div>
+            <div class="category-box c-box-6"><h1>美容薬品</h1></div>
+            <div class="category-box c-box-7"><h1 style="font-size: 15px;">トラベル予防薬</h1></div>
+            <div class="category-box c-box-8"><h1>ED治療薬</h1></div>
+            <div class="category-box c-box-9"><h1 style="font-size: 15px; line-height: 25px;">ヘルスチェック・健康診断</h1></div>
+            <div class="category-box c-box-10"><h1>疲労回復注射</h1></div>
+            <div class="category-box c-box-11"><h1>AGA治療薬</h1></div>
+            <div class="category-box c-box-12"><h1 style="font-size: 15px;">その他・ご相談</h1></div>
+            
+        </div>
+        <div class="selectbox name-box-container">
+            <div class="s-name">
+                {% if ordermenu_list %}
+                    {% for order in ordermenu_list %}
+                        {% if order.category == "渡航ワクチン" %}
+                        <div class="category-name"><p style="font-size: 22px;" class="order-n">{{ order.name }}</p><p style="font-size: 22px;" class="order-p" >{% if order.price != None %}¥{{order.price}}{% endif %}</p></div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="s-name">
+                {% if ordermenu_list %}
+                    {% for order in ordermenu_list %}
+                        {% if order.category == "美容健康注射" %}
+                        <div class="category-name"><p style="font-size: 22px;" class="order-n">{{ order.name }}</p><p style="font-size: 22px;" class="order-p" >{% if order.price != None %}¥{{order.price}}{% endif %}</p></div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="s-name">
+                {% if ordermenu_list %}
+                    {% for order in ordermenu_list %}
+                        {% if order.category == "ビタミン剤" %}
+                        <div class="category-name"><p style="font-size: 22px;" class="order-n">{{ order.name }}</p><p style="font-size: 22px;" class="order-p" >{% if order.price != None %}¥{{order.price}}{% endif %}</p></div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="s-name">
+                {% if ordermenu_list %}
+                    {% for order in ordermenu_list %}
+                        {% if order.category == "一般ワクチン" %}
+                        <div class="category-name"><p style="font-size: 22px;" class="order-n">{{ order.name }}</p><p style="font-size: 22px;" class="order-p" >{% if order.price != None %}¥{{order.price}}{% endif %}</p></div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="s-name">
+                {% if ordermenu_list %}
+                    {% for order in ordermenu_list %}
+                        {% if order.category == "アフターピル・低用量ピル" %}
+                        <div class="category-name"><p style="font-size: 22px;" class="order-n">{{ order.name }}</p><p style="font-size: 22px;" class="order-p" >{% if order.price != None %}¥{{order.price}}{% endif %}</p></div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="s-name">
+                {% if ordermenu_list %}
+                    {% for order in ordermenu_list %}
+                        {% if order.category == "美容薬品" %}
+                        <div class="category-name"><p style="font-size: 22px;" class="order-n">{{ order.name }}</p><p style="font-size: 22px;" class="order-p" >{% if order.price != None %}¥{{order.price}}{% endif %}</p></div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="s-name">
+                {% if ordermenu_list %}
+                    {% for order in ordermenu_list %}
+                        {% if order.category == "トラベル予防薬" %}
+                        <div class="category-name"><p style="font-size: 22px;" class="order-n">{{ order.name }}</p><p style="font-size: 22px;" class="order-p" >{% if order.price != None %}¥{{order.price}}{% endif %}</p></div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="s-name">
+                {% if ordermenu_list %}
+                    {% for order in ordermenu_list %}
+                        {% if order.category == "ED治療薬" %}
+                        <div class="category-name"><p style="font-size: 22px;" class="order-n">{{ order.name }}</p><p style="font-size: 22px;" class="order-p" >{% if order.price != None %}¥{{order.price}}{% endif %}</p></div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="s-name">
+                {% if ordermenu_list %}
+                    {% for order in ordermenu_list %}
+                        {% if order.category == "ヘルスチェック・健康診断" %}
+                        <div class="category-name"><p style="font-size: 22px;" class="order-n">{{ order.name }}</p><p style="font-size: 22px;" class="order-p" >{% if order.price != None %}¥{{order.price}}{% endif %}</p></div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="s-name">
+                {% if ordermenu_list %}
+                    {% for order in ordermenu_list %}
+                        {% if order.category == "疲労回復注射" %}
+                        <div class="category-name"><p style="font-size: 22px;" class="order-n">{{ order.name }}</p><p style="font-size: 22px;" class="order-p" >{% if order.price != None %}¥{{order.price}}{% endif %}</p></div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="s-name">
+                {% if ordermenu_list %}
+                    {% for order in ordermenu_list %}
+                        {% if order.category == "AGA治療薬" %}
+                        <div class="category-name"><p style="font-size: 22px;" class="order-n">{{ order.name }}</p><p style="font-size: 22px;" class="order-p" >{% if order.price != None %}¥{{order.price}}{% endif %}</p></div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="s-name">
+                {% if ordermenu_list %}
+                    {% for order in ordermenu_list %}
+                        {% if order.category == "その他・ご相談" %}
+                        <div class="category-name"><p style="font-size: 22px;" class="order-n">{{ order.name }}</p><p style="font-size: 22px;" class="order-p" >{% if order.price != None %}¥{{order.price}}{% endif %}</p></div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>  
+        </div>
+        <div class="selectbox order-box-container">
+            <div class="cancel-button">キャンセル</div>
+            <form action="{% url 'order:select' %}" method="post">
+                {% csrf_token %}
+                <div class="order-form"></div>
+                <div class="pricecount"></div>
+                <div class="reception"><input type="submit" value="受付する"></div>
+            </form>
+            
+        </div>
+    </div>
+{% else %}
+    <div><h1 style="text-align: center; margin-top: 300px;">ログインしてください</h1></div>
+{% endif %}
+{% endblock %} 

@@ -1,0 +1,63 @@
+アクティブコンダ
+conda activate djangoenv
+
+
+マイグレート
+python manage.py migrate
+python manage.py makemigrations appname
+
+
+起動
+python manage.py runserver
+
+
+データベース構成想定order
+--------------
+order_menu
+
+category
+name
+description
+price
+code
+stock
+type
+--------------
+
+
+$postjson{
+    'patientno':patientid,
+    
+    'order' : {
+        'type' : 'rp',
+        'detail' : {
+            'code' : '12345678',
+            'name' : 'xxxxxx',
+            'qty' : 1
+        },
+        
+        'type' : 'iv',
+        'detail' : {
+            'code' : '12345678',
+            'name' : 'xxxxxx',
+            'qty' : 1,
+            'type' : 1
+        },
+
+        'type' : 'doc',
+        'detail' : {
+            'code' : '12345678',
+            'name' : 'xxxxxx',
+            'qty' : 1
+        },
+
+        'type' : 'jihi_other',
+        'detail': {
+            'code' : '12345678',
+            'name' : 'xxxxxx',
+            'qty' : 1
+        },
+
+        {'type' : 'txt', 'detail' : 'xxxxxxxxxxxx'},   
+    }
+};
