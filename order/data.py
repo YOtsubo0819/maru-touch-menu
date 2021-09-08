@@ -76,7 +76,6 @@ def make_request(patient_data,
     pfx_key_buffer = BytesIO(base64.b64decode(config.PFX[clinic_id]))
     with pfx_to_pem(pfx_key_buffer, config.CERT_PASS) as cert:
         r = requests.post(api_url.strip('\''), cert=cert, params=params ,json=patient_data)
-        print(patient_data)
     if printurl:
         print(r.url)
     try:
