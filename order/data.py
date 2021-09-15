@@ -1,12 +1,11 @@
-import datetime
-import sys
 from . import config
+import time
 import json
 import base64
 import contextlib
 import hashlib
 import requests
-import arrow
+# import arrow
 from io import BytesIO
 import OpenSSL.crypto
 import tempfile
@@ -60,25 +59,27 @@ def make_request(patient_data,
                  clinic_id: str,
                  printurl=True,
                  ):
+
+    data = json.dumps(patient_data, ensure_ascii=False)
     """
     Make requests to KARTE API
     """
     api_url = config.API_URLS[clinic_id]
     secretkey = config.API_SECRET_KEYS[clinic_id]
-    time_string = arrow.now(tz=config.TIME_ZONE).format('YYYYMMDD')
-    print(time_string)
-    string = str(secretkey) + str(config.CURRENT_CLINC) + time_string
+    ts = str(int(time.time()))
+    string = str(secretkey) + str(config.CURRENT_CLINC) + ts
     token =  hashlib.md5(string.encode('utf-8')).hexdigest()
     params = {
-        'clinic': clinic_id,
+        #'clinic': clinic_id,
         'token': token,
+        'ts': ts,
     }
     pfx_key_buffer = BytesIO(base64.b64decode(config.PFX[clinic_id]))
     with pfx_to_pem(pfx_key_buffer, config.CERT_PASS) as cert:
-        r = requests.post(api_url.strip('\''), cert=cert, params=params ,json=patient_data)
+        r = requests.post(api_url.strip('\''), cert=cert, params=params ,data=data.encode('utf-8'))
     if printurl:
         print(r.url)
     try:
-        return print(r.json(), r.url)
+        return print(r.json())
     except json.decoder.JSONDecodeError:
         return {}

@@ -1,0 +1,14 @@
+{% extends 'order/base.html' %}
+{% block title %}patient{% endblock %}
+{% block contents %}
+{% load static%}
+<div class="ic-or-noneic-flex-box">
+    <button type=“button” onclick="location.href=''" class="ic-or-noneic-flex" id="iccard"><h1>ICカード</h1></button>
+    {% if user.username == "admin" or user.username == "counter" %}
+    <button type=“button” onclick="location.href='input/'" class="ic-or-noneic-flex" id="icnone"><h1>個人情報入力</h1></button>
+    {% else %}
+    <button type=“button” onclick="location.href='/order/gocounter'" class="ic-or-noneic-flex" id="icnone"><h1>個人情報入力</h1></button>
+    {% endif %}
+</div>
+<button type="button" onclick="location.href='/order'" class="gobackone" ><h1>戻る</h1></button>
+{% endblock %}

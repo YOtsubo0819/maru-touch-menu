@@ -141,6 +141,7 @@ ul li a:hover {
   border-right: none;
   box-sizing: border-box;
   background-color: rgb(248, 248, 248);
+  overflow-y: scroll;
   
 }
 
@@ -214,7 +215,7 @@ ul li a:hover {
 }
 
 .order-form {
-  height: 545px;
+  height: 500px;
   overflow-y: scroll;
 }
 
@@ -229,6 +230,10 @@ ul li a:hover {
   background-color: rgb(231, 169, 169);
   border: none;
   font-size: 30px;
+}
+
+.pricecount {
+  height: 45px;
 }
 
 .element{

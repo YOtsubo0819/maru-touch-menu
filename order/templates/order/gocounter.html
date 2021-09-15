@@ -1,0 +1,12 @@
+{% extends 'order/base.html' %}
+{% block title %}gocounter{% endblock %}
+{% block contents %}
+{% load static%}
+{% if user.is_authenticated %}
+
+<h1>カウンターへtest {{user.username}}</h1>
+ 
+{% else %}
+{% endif %}
+
+{% endblock %}

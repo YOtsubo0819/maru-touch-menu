@@ -11,18 +11,6 @@ python manage.py makemigrations appname
 python manage.py runserver
 
 
-データベース構成想定order
---------------
-order_menu
-
-category
-name
-description
-price
-code
-stock
-type
---------------
 
 
 $postjson{
@@ -61,3 +49,7 @@ $postjson{
         {'type' : 'txt', 'detail' : 'xxxxxxxxxxxx'},   
     }
 };
+
+
+
+brew services start postgresql@10

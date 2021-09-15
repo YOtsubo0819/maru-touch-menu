@@ -26,14 +26,9 @@ $( function() {
         const index = $(this).index();
         $(".s-name").removeClass("show").eq(index).addClass("show")
     });
+  
 
-//注文priceCount
-    var priceCount = 0;
-    for (var i = 0; i < $('.order-box').length; i++ ){
-        $('.pricecount').text(i);
-    }
-    
-
+    sum();
 //注文内容追加
     $(".category-name").on("click", function(){
         
@@ -59,41 +54,44 @@ $( function() {
                             
             $(".order-form").prepend(html_input);
         }   
+        sum();
     });
 
 //注文削除
     $(document).on('click', '.order-box', function(){
         $(this).remove();
+        sum();
     });
 
 
     $(".cancel-button").on("click", function(){
         $(".order-box").remove();
+        sum();
     });
 
+//注文priceCount
+    function sum(){
+        var pricelist = $(".order-form p[class=o-price]").map(function(index, val){
+            var price = parseInt($(val).text().replace(/[^0-9]/g, ''));
+            if (price >= 0) {
+                return price;
+            }else{
+                return null;
+            }
+            
+        });
+        var total = 0;
+        var totaltext = "合計：¥";
+        var taxtext = "(税込み)" 
+        pricelist.each(function(index, val){
+            total = total + val;
+            
+        });
+        $(".pricecount").text(totaltext + total + taxtext);
+    }
 
 //patient機能--------------------------------------------------------
 
-$('.first-patient-input').hide();
-$('.return-patient-input').hide();
-$('.ic-or-noneic-flex-box').hide();
-
-
-$('#first').on("click", function(){
-    $('.first-or-return-flex-box').hide();
-    $('.first-patient-input').show();
-});
-
-$('#return').on("click", function(){
-    $('.first-or-return-flex-box').hide();
-    $('.ic-or-noneic-flex-box').show();
-
-});
-
-$('#icnone').on("click", function(){
-    $('.ic-or-noneic-flex-box').hide();
-    $('.return-patient-input').show();
-});
 
 }); 
 

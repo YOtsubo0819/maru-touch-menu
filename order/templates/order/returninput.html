@@ -1,0 +1,21 @@
+{% extends 'order/base.html' %}
+{% block title %}input{% endblock %}
+{% block contents %}
+{% load static%}
+<div class="return-patient-input">
+    <form action="{% url 'order:returninput' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="forr" value="再診">
+        <div class="r-input-flex-box">
+            <div class="r-i-flex"><label for="fullname">フルネーム：<input type="text" name="fullname" id="fullname"></label></div>
+            <div class="r-i-flex"><label for="kana">カナ：<input type="text" name="kana" id="kana"></label></div>
+            <div class="r-i-flex"><label for="birthday">生年月日：<input type="date" name="birthday" id="birthday"></label></div>
+            <div class="r-i-flex"><label for="tel">電話番号：<input type="number" name="tel" id="tel"></label></div>
+            <div class="r-i-flex"><label for="address">住所（任意）：<input type="text" name="address" id="address"></label></div>
+            <div class="r-i-flex"><label for="patientid">患者ID（任意）：<input type="text" name="patientid" id="patientid"></label></div>
+        </div>
+        <input type="submit" value="注文へ進む">
+    </form>
+</div>
+<button type="button" onclick="location.href='/order/returnpt'" class="gobackone" ><h1>戻る</h1></button>
+{% endblock %}

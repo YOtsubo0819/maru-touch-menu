@@ -13,7 +13,12 @@
     <nav>
         {% if user.is_authenticated %}
         <ul>
+            {% if user.username == "admin" %}
             <li><a href="{% url 'logout' %}" style="color:#fff;">ログアウト</a></li>
+            <li><a href="/admin" style="color:#fff;">管理用</a></li>
+            {% else %}
+            <li><a href="{% url 'logout' %}" style="color:#fff;">ログアウト</a></li>
+            {% endif %}
         </ul>
         {% else %}
         <ul>

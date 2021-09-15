@@ -1,8 +1,7 @@
 from django.shortcuts import redirect
 from django.views import generic
-from .models import OrderMenu, OrderDetail
+from .models import OrderMenu, OrderDetail, Patient
 import json
-
 from . import config
 from . import data
 # Create your views here.
@@ -19,37 +18,38 @@ class SelectView(generic.ListView):
         last_order = OrderDetail.objects.order_by("id").last()
         last_order.ordername = postordername
         last_order.save()
-        print(postordername)
-        print(last_order.patientid)
+        ordermenutable = OrderMenu.objects.all()
 
-        # JSON作成     
+        # JSON作成
+        def intivtype(ivtype): # ivtypeを整数に変換する
+            return 1 if ivtype == '静脈注射' else 2 if ivtype == '筋肉注射' else 3 if ivtype == '皮下注射' else 4 if ivtype == '点滴注射' else 5 if ivtype == '皮内注射' else 6 if ivtype == 'その他注射' else ""
+
         array_data = {
-            'patientno' : last_order.patientid, 
+            'fullname' : str(last_order.ptname),
+            'kana' : str(last_order.kananame),
+            "dob":"", 
+            "gender":"",
+            'patientno' : str(last_order.patientid), 
             'order' : []
         }
-        ordermenutable = OrderMenu.objects.all()
+        
         for name in postordername:
             for order in ordermenutable:
                 if order.name == name:
-                    # print(type(order.name))
-                    code = str(order.code)
-                    dic = None
-                    dic = {
-                        'type' : order.type,
-                        'detail' : {
-                            'code' : code,
-                            'name' : order.name,
-                            'qty' : 1
+                    if order.type != None:
+                        dic = {
+                            'type' : order.type,
+                            'detail' : {'code': "" if order.code == None else order.code, 'name': order.name, 'qty': 1, 'type': intivtype(order.ivtype),}
                             }
-                        }
-                    array_data['order'].append(dic)
+                        array_data['order'].append(dic)
+                    else:
+                        dic = {
+                            'type' : "",
+                            'detail' : {'code': "" if order.code == None else order.code, 'name': order.name, 'qty': 1}
+                            }
+                        array_data['order'].append(dic)
 
-        # print(array_data)
-        
-        json_data = json.dumps(array_data,ensure_ascii=False)
-        print(json_data)
         # カルテへポスト
-        # data.make_request(clinic_id=config.CURRENT_CLINC,patient_data=json_data.encode('utf-8'))
         data.make_request(clinic_id=config.CURRENT_CLINC,patient_data=array_data)
     
         # リダイレクト
@@ -66,4 +66,34 @@ class IndexView(generic.ListView):
         od.save()
         print(postptid)
 
+        return redirect('/order/select/')
+
+class GocounterView(generic.TemplateView):
+    template_name = 'order/gocounter.html'
+
+class ReturnptView(generic.TemplateView):
+    template_name = 'order/returnpt.html'
+
+class NewinputView(generic.TemplateView):
+    template_name = 'order/newinput.html'
+
+    def post(self, request, *args, **kwargs):
+        fullname = self.request.POST['fullname']
+        patientid = self.request.POST['patientid']
+        kana = self.request.POST['kana']
+        print(fullname, patientid,kana)
+        od = OrderDetail(patientid=patientid, ptname=fullname, kananame=kana)
+        od.save()
+        return redirect('/order/select/')
+
+class ReturninputView(generic.TemplateView):
+    template_name = 'order/returninput.html'
+
+    def post(self, request, *args, **kwargs):
+        fullname = self.request.POST['fullname']
+        patientid = self.request.POST['patientid']
+        kana = self.request.POST['kana']
+        print(fullname, patientid,kana)
+        od = OrderDetail(patientid=patientid, ptname=fullname, kananame=kana)
+        od.save()
         return redirect('/order/select/')
