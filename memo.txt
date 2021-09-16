@@ -1,55 +1,16 @@
 アクティブコンダ
 conda activate djangoenv
 
-
 マイグレート
-python manage.py migrate
 python manage.py makemigrations appname
+python manage.py migrate
 
 
 起動
 python manage.py runserver
 
+shell起動
+python manage.py shell
 
-
-
-$postjson{
-    'patientno':patientid,
-    
-    'order' : {
-        'type' : 'rp',
-        'detail' : {
-            'code' : '12345678',
-            'name' : 'xxxxxx',
-            'qty' : 1
-        },
-        
-        'type' : 'iv',
-        'detail' : {
-            'code' : '12345678',
-            'name' : 'xxxxxx',
-            'qty' : 1,
-            'type' : 1
-        },
-
-        'type' : 'doc',
-        'detail' : {
-            'code' : '12345678',
-            'name' : 'xxxxxx',
-            'qty' : 1
-        },
-
-        'type' : 'jihi_other',
-        'detail': {
-            'code' : '12345678',
-            'name' : 'xxxxxx',
-            'qty' : 1
-        },
-
-        {'type' : 'txt', 'detail' : 'xxxxxxxxxxxx'},   
-    }
-};
-
-
-
+psql起動
 brew services start postgresql@10

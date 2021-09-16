@@ -2,14 +2,16 @@ $( function() {
 //select機能--------------------------------------------------------
 
     $('.sfc').hide();
-
+    $('.tab-container').hide();
 //.boxのカテゴリネームと同じカテゴリボックスをクリック
     let box = $(".box");
     $('.box').on('click', function(){
         $('.index-flex-container').hide();
         $('.sfc').show();
+        $('.tab-container').show();
         const index = $(this).index();
         $(".category-box").eq(index).click();
+        $("#tab-1").click();
     });
 
 //Topに戻る
@@ -26,7 +28,37 @@ $( function() {
         const index = $(this).index();
         $(".s-name").removeClass("show").eq(index).addClass("show")
     });
-  
+
+// タブ色変
+    $(".tab").on("click", function(){
+        $(".tab-active").removeClass("tab-active");
+        $(this).addClass("tab-active");
+    });
+//タブ切り替え
+    $("#tab-1").on("click", function(){
+        $(".category-box-container").show();
+        $(".name-box-container").show();
+        $(".category-box-container-tab2").hide();
+        $(".category-box-container-tab3").hide();
+        $(".name-box-container-tab2").hide();
+        $(".name-box-container-tab3").hide();
+    })
+    $("#tab-2").on("click", function(){
+        $(".category-box-container-tab2").show();
+        $(".name-box-container-tab2").show();
+        $(".category-box-container").hide();
+        $(".category-box-container-tab3").hide();
+        $(".name-box-container").hide();
+        $(".name-box-container-tab3").hide();
+    })
+    $("#tab-3").on("click", function(){
+        $(".category-box-container-tab3").show();
+        $(".name-box-container-tab3").show();
+        $(".category-box-container").hide();
+        $(".category-box-container-tab2").hide();
+        $(".name-box-container").hide();
+        $(".name-box-container-tab2").hide();
+    })
 
     sum();
 //注文内容追加
@@ -82,12 +114,12 @@ $( function() {
         });
         var total = 0;
         var totaltext = "合計：¥";
-        var taxtext = "(税込み)" 
+        var taxtext = "(税込)" 
         pricelist.each(function(index, val){
             total = total + val;
-            
+            total = total * 1.1;
         });
-        $(".pricecount").text(totaltext + total + taxtext);
+        $(".pricecount").find("p").text(totaltext + Math.ceil(total) + taxtext);
     }
 
 //patient機能--------------------------------------------------------

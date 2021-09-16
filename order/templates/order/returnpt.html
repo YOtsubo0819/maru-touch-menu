@@ -4,7 +4,7 @@
 {% load static%}
 <div class="ic-or-noneic-flex-box">
     <button type=“button” onclick="location.href=''" class="ic-or-noneic-flex" id="iccard"><h1>ICカード</h1></button>
-    {% if user.username == "admin" or user.username == "counter" %}
+    {% if user.username == "admin" or user.username == "marucounter" %}
     <button type=“button” onclick="location.href='input/'" class="ic-or-noneic-flex" id="icnone"><h1>個人情報入力</h1></button>
     {% else %}
     <button type=“button” onclick="location.href='/order/gocounter'" class="ic-or-noneic-flex" id="icnone"><h1>個人情報入力</h1></button>

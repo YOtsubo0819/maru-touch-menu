@@ -96,53 +96,91 @@ ul li a:hover {
 }
 
 .selectbox {
-  margin-top: 10px;
+  margin: 0px;
 }
 
 .category-box-container {
-  width: 150px;
-  height: 710px;
-  border: 1px solid rgb(146, 146, 146);
-  border-right: none;
+  width: 190px;
+  height: 670px;
+  /* border: 1px solid rgb(146, 146, 146); 
+  border-right: none;*/
+  padding-bottom: 2px;
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background-color: rgb(248, 248, 248);
+  background-color: rgb(255, 255, 255);
+  overflow-y: scroll;
 }
 
 .category-box {
-  width: 130px;
-  height: 50px;
+  margin-top: 5px;
+  width: 170px;
+  height: 70px;
   border: 1px solid rgb(212, 212, 212);
   box-sizing: border-box;
   background-color: rgb(255, 255, 255);
+  position:relative;
 }
 .category-box h1{
-  margin: 0;
-  font-size: 18px;
+  margin: auto;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  width: 95%;
+  font-size: 22px;
   text-align: center;
-  line-height: 50px
+  position: absolute;
 }
 
 .c-active {
-  background-color: rgb(184, 228, 253);
+  background-color: rgb(207, 207, 207);
   border: none;
   
 }
 
+.category-box-container-tab2 {
+  width: 190px;
+  height: 670px;
+  /* border: 1px solid rgb(146, 146, 146); 
+  border-right: none;*/
+  padding-bottom: 2px;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  overflow-y: scroll;
+}
+.category-box-container-tab3 {
+  width: 190px;
+  height: 670px;
+  /* border: 1px solid rgb(146, 146, 146); 
+  border-right: none;*/
+  padding-bottom: 2px;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  overflow-y: scroll;
+}
+
+
+
 
 
 .name-box-container{
-  width: 740px;
-  height: 710px;
-  border: 1px solid rgb(146, 146, 146);
-  border-right: none;
+  width: 700px;
+  height: 670px;
+  /* border: 1px solid rgb(146, 146, 146);
+  border-right: none; */
   box-sizing: border-box;
-  background-color: rgb(248, 248, 248);
+  background-color: rgb(255, 255, 255);
   overflow-y: scroll;
-  
 }
 
 .s-name {
@@ -151,6 +189,27 @@ ul li a:hover {
 .show {
   display: block;
 }
+.name-box-container-tab2{
+  width: 700px;
+  height: 670px;
+  /* border: 1px solid rgb(146, 146, 146);
+  border-right: none; */
+  box-sizing: border-box;
+  background-color: rgb(255, 255, 255);
+  overflow-y: scroll;
+}
+.name-box-container-tab3{
+  width: 700px;
+  height: 670px;
+  /* border: 1px solid rgb(146, 146, 146);
+  border-right: none; */
+  box-sizing: border-box;
+  background-color: rgb(255, 255, 255);
+  overflow-y: scroll;
+}
+
+
+
 
 .category-name {
   display: flex;
@@ -159,7 +218,7 @@ ul li a:hover {
   padding: 0 10px 0 10px;
   margin: 3px;
   border: 1px solid rgb(212, 212, 212);
-  background-color: rgb(233, 248, 255);
+  background-color: rgb(235, 255, 233);
   height: 50px;
 }
 
@@ -172,10 +231,10 @@ ul li a:hover {
 
 .order-box-container {
   width: 280px;
-  height: 710px;
-  border: 1px solid rgb(146, 146, 146);
-  box-sizing: border-box;
-  background-color: rgb(248, 248, 248);
+  height: 670px;
+  /* border: 1px solid rgb(146, 146, 146);
+  box-sizing: border-box; */
+  background-color: rgb(255, 255, 255);
 }
 
 .cancel-button {
@@ -215,7 +274,7 @@ ul li a:hover {
 }
 
 .order-form {
-  height: 500px;
+  height: 460px;
   overflow-y: scroll;
 }
 
@@ -225,7 +284,7 @@ ul li a:hover {
 }
 
 .reception input{
-  width: 274px;
+  width: 276px;
   height: 100px;
   background-color: rgb(231, 169, 169);
   border: none;
@@ -234,6 +293,19 @@ ul li a:hover {
 
 .pricecount {
   height: 45px;
+  position: relative;
+  background-color: seashell;
+  margin: 0 1px 0 1px;
+}
+.pricecount p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  font-size: 24px;
+  width: 240px;
+  text-align: center;
 }
 
 .element{
@@ -253,7 +325,7 @@ ul li a:hover {
   width: 400px;
   height: 200px;
   background-color: seagreen;
-  margin: 20px;
+  margin: 220px 20px 20px 20px;
   text-align: center;
 }
 .first-or-return-flex h1 {
@@ -270,9 +342,33 @@ ul li a:hover {
   width: 400px;
   height: 200px;
   background-color: seagreen;
-  margin: 20px;
+  margin: 220px 20px 20px 20px;;
   text-align: center;
 }
 .ic-or-noneic-flex h1 {
   margin: 0;
+}
+
+.tab-container {
+  padding-left: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.tab {
+  height: 50px;
+  margin-top: 8px;
+  background-color: rgb(170, 170, 170);
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.tab p {
+  text-align: center;
+  margin: 12px 0 0 0;
+  font-size: 18px;
+}
+
+.tab-active {
+  background-color: rgb(255, 255, 255);;
 }

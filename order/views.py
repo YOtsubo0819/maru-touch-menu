@@ -12,6 +12,12 @@ class SelectView(generic.ListView):
     template_name = 'order/select.html'
     model = OrderMenu
 
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(SelectView, self).get_context_data(**kwargs)
+        context['category_name'] = OrderMenu.objects.values('category').distinct()
+        return context
+
     def post(self, request, *args, **kwargs):
         # POSTデータ取得
         postordername = self.request.POST.getlist('ordername')
@@ -61,12 +67,14 @@ class IndexView(generic.ListView):
     model = OrderMenu
 
     def post(self, request, *args, **kwargs):
-        postptid = self.request.POST['patientid']
-        od = OrderDetail(patientid=postptid)
+        fullname = self.request.POST['fullname']
+        patientid = self.request.POST['patientid']
+        kana = self.request.POST['kana']
+        print(fullname, patientid,kana)
+        od = OrderDetail(patientid=patientid, ptname=fullname, kananame=kana)
         od.save()
-        print(postptid)
-
         return redirect('/order/select/')
+
 
 class GocounterView(generic.TemplateView):
     template_name = 'order/gocounter.html'
