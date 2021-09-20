@@ -114,12 +114,12 @@ $( function() {
         });
         var total = 0;
         var totaltext = "合計：¥";
-        var taxtext = "(税込)" 
+        //var taxtext = "(税込)" 
         pricelist.each(function(index, val){
             total = total + val;
-            total = total * 1.1;
+            //total = total * 1.1;
         });
-        $(".pricecount").find("p").text(totaltext + Math.ceil(total) + taxtext);
+        $(".pricecount").find("p").text(totaltext + Math.ceil(total));
     }
 
 //patient機能--------------------------------------------------------

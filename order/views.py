@@ -59,7 +59,7 @@ class SelectView(generic.ListView):
         data.make_request(clinic_id=config.CURRENT_CLINC,patient_data=array_data)
     
         # リダイレクト
-        return redirect('/order/')
+        return redirect('/')
 
 
 class IndexView(generic.ListView):
@@ -73,7 +73,7 @@ class IndexView(generic.ListView):
         print(fullname, patientid,kana)
         od = OrderDetail(patientid=patientid, ptname=fullname, kananame=kana)
         od.save()
-        return redirect('/order/select/')
+        return redirect('/select')
 
 
 class GocounterView(generic.TemplateView):
@@ -104,4 +104,4 @@ class ReturninputView(generic.TemplateView):
         print(fullname, patientid,kana)
         od = OrderDetail(patientid=patientid, ptname=fullname, kananame=kana)
         od.save()
-        return redirect('/order/select/')
+        return redirect('/select')

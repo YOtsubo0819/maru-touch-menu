@@ -218,7 +218,7 @@ ul li a:hover {
   padding: 0 10px 0 10px;
   margin: 3px;
   border: 1px solid rgb(212, 212, 212);
-  background-color: rgb(235, 255, 233);
+  background-color: rgb(236, 236, 236);
   height: 50px;
 }
 
@@ -259,7 +259,7 @@ ul li a:hover {
   justify-content: space-between;
   border: 1px solid rgb(212, 212, 212);
   margin: 1px;
-  background-color: rgb(215, 255, 215);
+  background-color: rgb(236, 236, 236);
   width: 274px;
 }
 
@@ -294,7 +294,7 @@ ul li a:hover {
 .pricecount {
   height: 45px;
   position: relative;
-  background-color: seashell;
+  background-color: rgb(220, 210, 255);
   margin: 0 1px 0 1px;
 }
 .pricecount p {
@@ -324,7 +324,7 @@ ul li a:hover {
 .first-or-return-flex {
   width: 400px;
   height: 200px;
-  background-color: seagreen;
+  background-color: rgb(181, 188, 255);
   margin: 220px 20px 20px 20px;
   text-align: center;
 }
@@ -341,7 +341,7 @@ ul li a:hover {
 .ic-or-noneic-flex {
   width: 400px;
   height: 200px;
-  background-color: seagreen;
+  background-color: rgb(181, 188, 255);
   margin: 220px 20px 20px 20px;;
   text-align: center;
 }
