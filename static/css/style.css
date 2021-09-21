@@ -372,3 +372,42 @@ ul li a:hover {
 .tab-active {
   background-color: rgb(255, 255, 255);;
 }
+
+
+.r-input-flex-box {
+  margin-top: 150px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+}
+
+.r-i-flex {
+  width: 500px;
+  margin-top: 20px;
+  margin-right: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.r-i-flex input {
+  height: 30px;
+}
+
+.s-or-b-flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-left: 70px;
+  margin-right: 70px;
+  margin-top: 300px;
+}
+
+.s-or-b-flex button {
+  width: 200px;
+}
+
+.s-or-b-flex input {
+  font-size: 30px;
+  width: 200px;
+}

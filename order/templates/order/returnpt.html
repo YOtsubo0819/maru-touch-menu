@@ -2,13 +2,17 @@
 {% block title %}patient{% endblock %}
 {% block contents %}
 {% load static%}
+{% if user.is_authenticated %}
 <div class="ic-or-noneic-flex-box">
-    <button type=“button” onclick="location.href=''" class="ic-or-noneic-flex" id="iccard"><h1>ICカード</h1></button>
+    <button type=“button” onclick="location.href=''" class="ic-or-noneic-flex" id="iccard"><h1 style="font-size: 40px;">ICカード</h1></button>
     {% if user.username == "admin" or user.username == "marucounter" %}
-    <button type=“button” onclick="location.href='input/'" class="ic-or-noneic-flex" id="icnone"><h1>個人情報入力</h1></button>
+    <button type=“button” onclick="location.href='/returninput'" class="ic-or-noneic-flex" id="icnone"><h1 style="font-size: 40px;">個人情報入力</h1></button>
     {% else %}
-    <button type=“button” onclick="location.href='/order/gocounter'" class="ic-or-noneic-flex" id="icnone"><h1>個人情報入力</h1></button>
+    <button type=“button” onclick="location.href='/gocounter'" class="ic-or-noneic-flex" id="icnone"><h1 style="font-size: 40px;">個人情報入力</h1></button>
     {% endif %}
 </div>
-<button type="button" onclick="location.href='/order'" class="gobackone" ><h1>戻る</h1></button>
+<button type="button" onclick="location.href='/'" class="gobackone" style="width: 200px; margin-top: 78px; margin-left: 70px;"><h1>戻る</h1></button>
+{% else %}
+    <div><h1 style="text-align: center; margin-top: 300px;">ログインしてください</h1></div>
+{% endif %}
 {% endblock %}
