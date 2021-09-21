@@ -1,0 +1,10 @@
+{% extends 'order/base.html' %}
+{% block title %}patient{% endblock %}
+{% block contents %}
+{% load static%}
+{% if user.is_authenticated %}
+<button type="button" onclick="location.href='/returnpt'" class="gobackone" style="width: 200px; margin-top: 78px; margin-left: 70px;"><h1>戻る</h1></button>
+{% else %}
+    <div><h1 style="text-align: center; margin-top: 300px;">ログインしてください</h1></div>
+{% endif %}
+{% endblock %}

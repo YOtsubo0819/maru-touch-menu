@@ -1,7 +1,6 @@
 from django.shortcuts import redirect
 from django.views import generic
-from .models import OrderMenu, OrderDetail, Patient
-import json
+from .models import OrderMenu, OrderDetail
 from . import config
 from . import data
 # Create your views here.
@@ -62,9 +61,8 @@ class SelectView(generic.ListView):
         return redirect('/')
 
 
-class IndexView(generic.ListView):
+class IndexView(generic.TemplateView):
     template_name = 'order/index.html'
-    model = OrderMenu
 
     def post(self, request, *args, **kwargs):
         fullname = self.request.POST['fullname']
@@ -75,6 +73,9 @@ class IndexView(generic.ListView):
         od.save()
         return redirect('/select')
 
+
+class IcView(generic.TemplateView):
+    template_name = 'order/ic.html'
 
 class GocounterView(generic.TemplateView):
     template_name = 'order/gocounter.html'

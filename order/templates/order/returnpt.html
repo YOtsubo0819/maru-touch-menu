@@ -4,7 +4,7 @@
 {% load static%}
 {% if user.is_authenticated %}
 <div class="ic-or-noneic-flex-box">
-    <button type=“button” onclick="location.href=''" class="ic-or-noneic-flex" id="iccard"><h1 style="font-size: 40px;">ICカード</h1></button>
+    <button type=“button” onclick="location.href='/ic'" class="ic-or-noneic-flex" id="iccard"><h1 style="font-size: 40px;">ICカード</h1></button>
     {% if user.username == "admin" or user.username == "marucounter" %}
     <button type=“button” onclick="location.href='/returninput'" class="ic-or-noneic-flex" id="icnone"><h1 style="font-size: 40px;">個人情報入力</h1></button>
     {% else %}

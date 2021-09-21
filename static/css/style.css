@@ -64,7 +64,6 @@ ul li a:hover {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  
 }
 
 .imagebox {
@@ -73,15 +72,16 @@ ul li a:hover {
   border: 1px solid rgb(146, 146, 146);
   box-sizing: border-box;
 }
+
 .namebox {
   width: 350px;
   height: 60px;
   border: 1px solid rgb(146, 146, 146);
   border-top: none;
   box-sizing: border-box;
-  align-items: center;
-  
+  align-items: center;  
 }
+
 .namebox h1 {
   margin: 10px 0 0 0;
   text-align: center;
@@ -102,8 +102,6 @@ ul li a:hover {
 .category-box-container {
   width: 190px;
   height: 670px;
-  /* border: 1px solid rgb(146, 146, 146); 
-  border-right: none;*/
   padding-bottom: 2px;
   box-sizing: border-box;
   display: flex;
@@ -143,8 +141,6 @@ ul li a:hover {
 .category-box-container-tab2 {
   width: 190px;
   height: 670px;
-  /* border: 1px solid rgb(146, 146, 146); 
-  border-right: none;*/
   padding-bottom: 2px;
   box-sizing: border-box;
   display: flex;
@@ -154,11 +150,10 @@ ul li a:hover {
   background-color: rgb(255, 255, 255);
   overflow-y: scroll;
 }
+
 .category-box-container-tab3 {
   width: 190px;
   height: 670px;
-  /* border: 1px solid rgb(146, 146, 146); 
-  border-right: none;*/
   padding-bottom: 2px;
   box-sizing: border-box;
   display: flex;
@@ -168,16 +163,10 @@ ul li a:hover {
   background-color: rgb(255, 255, 255);
   overflow-y: scroll;
 }
-
-
-
-
 
 .name-box-container{
   width: 700px;
   height: 670px;
-  /* border: 1px solid rgb(146, 146, 146);
-  border-right: none; */
   box-sizing: border-box;
   background-color: rgb(255, 255, 255);
   overflow-y: scroll;
@@ -186,30 +175,26 @@ ul li a:hover {
 .s-name {
   display: none;
 }
+
 .show {
   display: block;
 }
+
 .name-box-container-tab2{
   width: 700px;
   height: 670px;
-  /* border: 1px solid rgb(146, 146, 146);
-  border-right: none; */
   box-sizing: border-box;
   background-color: rgb(255, 255, 255);
   overflow-y: scroll;
 }
+
 .name-box-container-tab3{
   width: 700px;
   height: 670px;
-  /* border: 1px solid rgb(146, 146, 146);
-  border-right: none; */
   box-sizing: border-box;
   background-color: rgb(255, 255, 255);
   overflow-y: scroll;
 }
-
-
-
 
 .category-name {
   display: flex;
@@ -227,13 +212,9 @@ ul li a:hover {
   padding-top: 10px;
 }
 
-
-
 .order-box-container {
   width: 280px;
   height: 670px;
-  /* border: 1px solid rgb(146, 146, 146);
-  box-sizing: border-box; */
   background-color: rgb(255, 255, 255);
 }
 
@@ -250,8 +231,6 @@ ul li a:hover {
 .order-box {
   display: flex;
 }
-
-
 
 .order-box-m{
   display: flex;
@@ -297,6 +276,7 @@ ul li a:hover {
   background-color: rgb(220, 210, 255);
   margin: 0 1px 0 1px;
 }
+
 .pricecount p {
   position: absolute;
   top: 50%;
@@ -311,7 +291,6 @@ ul li a:hover {
 .element{
   flex-shrink: 0;
 }
-
 
 /* patient --------------------------------------------------------- */
 
@@ -328,6 +307,7 @@ ul li a:hover {
   margin: 220px 20px 20px 20px;
   text-align: center;
 }
+
 .first-or-return-flex h1 {
   margin: 0;
 }
@@ -345,6 +325,7 @@ ul li a:hover {
   margin: 220px 20px 20px 20px;;
   text-align: center;
 }
+
 .ic-or-noneic-flex h1 {
   margin: 0;
 }
@@ -372,7 +353,6 @@ ul li a:hover {
 .tab-active {
   background-color: rgb(255, 255, 255);;
 }
-
 
 .r-input-flex-box {
   margin-top: 150px;

@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 from .models import OrderDetail, Patient, OrderMenu
 
-admin.site.site_url = '/order'
+admin.site.site_url = '/'
 admin.site.site_header = 'タッチパネルシステム管理画面'
 
 class OrderMenuAdmin(admin.ModelAdmin):

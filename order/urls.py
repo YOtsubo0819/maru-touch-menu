@@ -9,6 +9,7 @@ urlpatterns = [
     path('newinput/', views.NewinputView.as_view(), name='newinput'),
     path('gocounter/', views.GocounterView.as_view(), name='gocounter'),
     path('returnpt/', views.ReturnptView.as_view(), name='returnpt'),
+    path('ic/', views.IcView.as_view(), name='ic'),
     path('select/', views.SelectView.as_view(), name='select'),
     
 ]
