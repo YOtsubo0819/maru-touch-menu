@@ -1,0 +1,1541 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 10.18
+-- Dumped by pg_dump version 10.18
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+ALTER TABLE ONLY public.django_admin_log DROP CONSTRAINT django_admin_log_user_id_c564eba6_fk_auth_user_id;
+ALTER TABLE ONLY public.django_admin_log DROP CONSTRAINT django_admin_log_content_type_id_c4bce8eb_fk_django_co;
+ALTER TABLE ONLY public.auth_user_user_permissions DROP CONSTRAINT auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id;
+ALTER TABLE ONLY public.auth_user_user_permissions DROP CONSTRAINT auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm;
+ALTER TABLE ONLY public.auth_user_groups DROP CONSTRAINT auth_user_groups_user_id_6a12ed8b_fk_auth_user_id;
+ALTER TABLE ONLY public.auth_user_groups DROP CONSTRAINT auth_user_groups_group_id_97559544_fk_auth_group_id;
+ALTER TABLE ONLY public.auth_permission DROP CONSTRAINT auth_permission_content_type_id_2f476e4b_fk_django_co;
+ALTER TABLE ONLY public.auth_group_permissions DROP CONSTRAINT auth_group_permissions_group_id_b120cbf9_fk_auth_group_id;
+ALTER TABLE ONLY public.auth_group_permissions DROP CONSTRAINT auth_group_permissio_permission_id_84c5c92e_fk_auth_perm;
+DROP INDEX public.django_session_session_key_c0390e0f_like;
+DROP INDEX public.django_session_expire_date_a5c62663;
+DROP INDEX public.django_admin_log_user_id_c564eba6;
+DROP INDEX public.django_admin_log_content_type_id_c4bce8eb;
+DROP INDEX public.auth_user_username_6821ab7c_like;
+DROP INDEX public.auth_user_user_permissions_user_id_a95ead1b;
+DROP INDEX public.auth_user_user_permissions_permission_id_1fbb5f2c;
+DROP INDEX public.auth_user_groups_user_id_6a12ed8b;
+DROP INDEX public.auth_user_groups_group_id_97559544;
+DROP INDEX public.auth_permission_content_type_id_2f476e4b;
+DROP INDEX public.auth_group_permissions_permission_id_84c5c92e;
+DROP INDEX public.auth_group_permissions_group_id_b120cbf9;
+DROP INDEX public.auth_group_name_a6ea08ec_like;
+ALTER TABLE ONLY public.order_patient DROP CONSTRAINT order_patient_pkey;
+ALTER TABLE ONLY public.order_ordermenu DROP CONSTRAINT order_ordermenu_pkey;
+ALTER TABLE ONLY public.order_orderdetail DROP CONSTRAINT order_orderdetail_pkey;
+ALTER TABLE ONLY public.django_session DROP CONSTRAINT django_session_pkey;
+ALTER TABLE ONLY public.django_migrations DROP CONSTRAINT django_migrations_pkey;
+ALTER TABLE ONLY public.django_content_type DROP CONSTRAINT django_content_type_pkey;
+ALTER TABLE ONLY public.django_content_type DROP CONSTRAINT django_content_type_app_label_model_76bd3d3b_uniq;
+ALTER TABLE ONLY public.django_admin_log DROP CONSTRAINT django_admin_log_pkey;
+ALTER TABLE ONLY public.auth_user DROP CONSTRAINT auth_user_username_key;
+ALTER TABLE ONLY public.auth_user_user_permissions DROP CONSTRAINT auth_user_user_permissions_user_id_permission_id_14a6b632_uniq;
+ALTER TABLE ONLY public.auth_user_user_permissions DROP CONSTRAINT auth_user_user_permissions_pkey;
+ALTER TABLE ONLY public.auth_user DROP CONSTRAINT auth_user_pkey;
+ALTER TABLE ONLY public.auth_user_groups DROP CONSTRAINT auth_user_groups_user_id_group_id_94350c0c_uniq;
+ALTER TABLE ONLY public.auth_user_groups DROP CONSTRAINT auth_user_groups_pkey;
+ALTER TABLE ONLY public.auth_permission DROP CONSTRAINT auth_permission_pkey;
+ALTER TABLE ONLY public.auth_permission DROP CONSTRAINT auth_permission_content_type_id_codename_01ab375a_uniq;
+ALTER TABLE ONLY public.auth_group DROP CONSTRAINT auth_group_pkey;
+ALTER TABLE ONLY public.auth_group_permissions DROP CONSTRAINT auth_group_permissions_pkey;
+ALTER TABLE ONLY public.auth_group_permissions DROP CONSTRAINT auth_group_permissions_group_id_permission_id_0cd325b0_uniq;
+ALTER TABLE ONLY public.auth_group DROP CONSTRAINT auth_group_name_key;
+ALTER TABLE public.order_patient ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.order_ordermenu ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.order_orderdetail ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.django_migrations ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.django_content_type ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.django_admin_log ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.auth_user_user_permissions ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.auth_user_groups ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.auth_user ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.auth_permission ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.auth_group_permissions ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.auth_group ALTER COLUMN id DROP DEFAULT;
+DROP SEQUENCE public.order_patient_id_seq;
+DROP TABLE public.order_patient;
+DROP SEQUENCE public.order_ordermenu_id_seq;
+DROP TABLE public.order_ordermenu;
+DROP SEQUENCE public.order_orderdetail_id_seq;
+DROP TABLE public.order_orderdetail;
+DROP TABLE public.django_session;
+DROP SEQUENCE public.django_migrations_id_seq;
+DROP TABLE public.django_migrations;
+DROP SEQUENCE public.django_content_type_id_seq;
+DROP TABLE public.django_content_type;
+DROP SEQUENCE public.django_admin_log_id_seq;
+DROP TABLE public.django_admin_log;
+DROP SEQUENCE public.auth_user_user_permissions_id_seq;
+DROP TABLE public.auth_user_user_permissions;
+DROP SEQUENCE public.auth_user_id_seq;
+DROP SEQUENCE public.auth_user_groups_id_seq;
+DROP TABLE public.auth_user_groups;
+DROP TABLE public.auth_user;
+DROP SEQUENCE public.auth_permission_id_seq;
+DROP TABLE public.auth_permission;
+DROP SEQUENCE public.auth_group_permissions_id_seq;
+DROP TABLE public.auth_group_permissions;
+DROP SEQUENCE public.auth_group_id_seq;
+DROP TABLE public.auth_group;
+DROP EXTENSION plpgsql;
+DROP SCHEMA public;
+--
+-- Name: public; Type: SCHEMA; Schema: -; Owner: tbcmarunouchi22
+--
+
+CREATE SCHEMA public;
+
+
+ALTER SCHEMA public OWNER TO tbcmarunouchi22;
+
+--
+-- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: tbcmarunouchi22
+--
+
+COMMENT ON SCHEMA public IS 'standard public schema';
+
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: auth_group; Type: TABLE; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE TABLE public.auth_group (
+    id integer NOT NULL,
+    name character varying(150) NOT NULL
+);
+
+
+ALTER TABLE public.auth_group OWNER TO tbcmarunouchi22;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE SEQUENCE public.auth_group_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_id_seq OWNER TO tbcmarunouchi22;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER SEQUENCE public.auth_group_id_seq OWNED BY public.auth_group.id;
+
+
+--
+-- Name: auth_group_permissions; Type: TABLE; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE TABLE public.auth_group_permissions (
+    id bigint NOT NULL,
+    group_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_group_permissions OWNER TO tbcmarunouchi22;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE SEQUENCE public.auth_group_permissions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_permissions_id_seq OWNER TO tbcmarunouchi22;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER SEQUENCE public.auth_group_permissions_id_seq OWNED BY public.auth_group_permissions.id;
+
+
+--
+-- Name: auth_permission; Type: TABLE; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE TABLE public.auth_permission (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    content_type_id integer NOT NULL,
+    codename character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.auth_permission OWNER TO tbcmarunouchi22;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE SEQUENCE public.auth_permission_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_permission_id_seq OWNER TO tbcmarunouchi22;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER SEQUENCE public.auth_permission_id_seq OWNED BY public.auth_permission.id;
+
+
+--
+-- Name: auth_user; Type: TABLE; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE TABLE public.auth_user (
+    id integer NOT NULL,
+    password character varying(128) NOT NULL,
+    last_login timestamp with time zone,
+    is_superuser boolean NOT NULL,
+    username character varying(150) NOT NULL,
+    first_name character varying(150) NOT NULL,
+    last_name character varying(150) NOT NULL,
+    email character varying(254) NOT NULL,
+    is_staff boolean NOT NULL,
+    is_active boolean NOT NULL,
+    date_joined timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.auth_user OWNER TO tbcmarunouchi22;
+
+--
+-- Name: auth_user_groups; Type: TABLE; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE TABLE public.auth_user_groups (
+    id bigint NOT NULL,
+    user_id integer NOT NULL,
+    group_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_user_groups OWNER TO tbcmarunouchi22;
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE SEQUENCE public.auth_user_groups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_groups_id_seq OWNER TO tbcmarunouchi22;
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER SEQUENCE public.auth_user_groups_id_seq OWNED BY public.auth_user_groups.id;
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE SEQUENCE public.auth_user_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_id_seq OWNER TO tbcmarunouchi22;
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER SEQUENCE public.auth_user_id_seq OWNED BY public.auth_user.id;
+
+
+--
+-- Name: auth_user_user_permissions; Type: TABLE; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE TABLE public.auth_user_user_permissions (
+    id bigint NOT NULL,
+    user_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_user_user_permissions OWNER TO tbcmarunouchi22;
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE SEQUENCE public.auth_user_user_permissions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_user_permissions_id_seq OWNER TO tbcmarunouchi22;
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER SEQUENCE public.auth_user_user_permissions_id_seq OWNED BY public.auth_user_user_permissions.id;
+
+
+--
+-- Name: django_admin_log; Type: TABLE; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE TABLE public.django_admin_log (
+    id integer NOT NULL,
+    action_time timestamp with time zone NOT NULL,
+    object_id text,
+    object_repr character varying(200) NOT NULL,
+    action_flag smallint NOT NULL,
+    change_message text NOT NULL,
+    content_type_id integer,
+    user_id integer NOT NULL,
+    CONSTRAINT django_admin_log_action_flag_check CHECK ((action_flag >= 0))
+);
+
+
+ALTER TABLE public.django_admin_log OWNER TO tbcmarunouchi22;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE SEQUENCE public.django_admin_log_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_admin_log_id_seq OWNER TO tbcmarunouchi22;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER SEQUENCE public.django_admin_log_id_seq OWNED BY public.django_admin_log.id;
+
+
+--
+-- Name: django_content_type; Type: TABLE; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE TABLE public.django_content_type (
+    id integer NOT NULL,
+    app_label character varying(100) NOT NULL,
+    model character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.django_content_type OWNER TO tbcmarunouchi22;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE SEQUENCE public.django_content_type_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_content_type_id_seq OWNER TO tbcmarunouchi22;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER SEQUENCE public.django_content_type_id_seq OWNED BY public.django_content_type.id;
+
+
+--
+-- Name: django_migrations; Type: TABLE; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE TABLE public.django_migrations (
+    id bigint NOT NULL,
+    app character varying(255) NOT NULL,
+    name character varying(255) NOT NULL,
+    applied timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.django_migrations OWNER TO tbcmarunouchi22;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE SEQUENCE public.django_migrations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_migrations_id_seq OWNER TO tbcmarunouchi22;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER SEQUENCE public.django_migrations_id_seq OWNED BY public.django_migrations.id;
+
+
+--
+-- Name: django_session; Type: TABLE; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE TABLE public.django_session (
+    session_key character varying(40) NOT NULL,
+    session_data text NOT NULL,
+    expire_date timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.django_session OWNER TO tbcmarunouchi22;
+
+--
+-- Name: order_orderdetail; Type: TABLE; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE TABLE public.order_orderdetail (
+    id bigint NOT NULL,
+    ptname character varying(50),
+    kananame character varying(50),
+    patientid character varying(20),
+    felicaid character varying(30),
+    ordername character varying(200)
+);
+
+
+ALTER TABLE public.order_orderdetail OWNER TO tbcmarunouchi22;
+
+--
+-- Name: order_orderdetail_id_seq; Type: SEQUENCE; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE SEQUENCE public.order_orderdetail_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.order_orderdetail_id_seq OWNER TO tbcmarunouchi22;
+
+--
+-- Name: order_orderdetail_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER SEQUENCE public.order_orderdetail_id_seq OWNED BY public.order_orderdetail.id;
+
+
+--
+-- Name: order_ordermenu; Type: TABLE; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE TABLE public.order_ordermenu (
+    id bigint NOT NULL,
+    category character varying(50),
+    name character varying(50),
+    description text,
+    price integer,
+    code character varying(15),
+    stock integer,
+    type character varying(10),
+    ivtype character varying(10)
+);
+
+
+ALTER TABLE public.order_ordermenu OWNER TO tbcmarunouchi22;
+
+--
+-- Name: order_ordermenu_id_seq; Type: SEQUENCE; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE SEQUENCE public.order_ordermenu_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.order_ordermenu_id_seq OWNER TO tbcmarunouchi22;
+
+--
+-- Name: order_ordermenu_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER SEQUENCE public.order_ordermenu_id_seq OWNED BY public.order_ordermenu.id;
+
+
+--
+-- Name: order_patient; Type: TABLE; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE TABLE public.order_patient (
+    id bigint NOT NULL,
+    fullname_kana character varying(50) NOT NULL,
+    fullname_kanji character varying(50) NOT NULL,
+    birthday date NOT NULL,
+    gender character varying(5) NOT NULL,
+    patientid integer,
+    tel_number character varying(13) NOT NULL,
+    postal_code character varying(8) NOT NULL,
+    address character varying(100),
+    insurer_id character varying(100)
+);
+
+
+ALTER TABLE public.order_patient OWNER TO tbcmarunouchi22;
+
+--
+-- Name: order_patient_id_seq; Type: SEQUENCE; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE SEQUENCE public.order_patient_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.order_patient_id_seq OWNER TO tbcmarunouchi22;
+
+--
+-- Name: order_patient_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER SEQUENCE public.order_patient_id_seq OWNED BY public.order_patient.id;
+
+
+--
+-- Name: auth_group id; Type: DEFAULT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.auth_group ALTER COLUMN id SET DEFAULT nextval('public.auth_group_id_seq'::regclass);
+
+
+--
+-- Name: auth_group_permissions id; Type: DEFAULT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.auth_group_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_group_permissions_id_seq'::regclass);
+
+
+--
+-- Name: auth_permission id; Type: DEFAULT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.auth_permission ALTER COLUMN id SET DEFAULT nextval('public.auth_permission_id_seq'::regclass);
+
+
+--
+-- Name: auth_user id; Type: DEFAULT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.auth_user ALTER COLUMN id SET DEFAULT nextval('public.auth_user_id_seq'::regclass);
+
+
+--
+-- Name: auth_user_groups id; Type: DEFAULT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.auth_user_groups ALTER COLUMN id SET DEFAULT nextval('public.auth_user_groups_id_seq'::regclass);
+
+
+--
+-- Name: auth_user_user_permissions id; Type: DEFAULT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_user_user_permissions_id_seq'::regclass);
+
+
+--
+-- Name: django_admin_log id; Type: DEFAULT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.django_admin_log ALTER COLUMN id SET DEFAULT nextval('public.django_admin_log_id_seq'::regclass);
+
+
+--
+-- Name: django_content_type id; Type: DEFAULT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.django_content_type ALTER COLUMN id SET DEFAULT nextval('public.django_content_type_id_seq'::regclass);
+
+
+--
+-- Name: django_migrations id; Type: DEFAULT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.django_migrations ALTER COLUMN id SET DEFAULT nextval('public.django_migrations_id_seq'::regclass);
+
+
+--
+-- Name: order_orderdetail id; Type: DEFAULT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.order_orderdetail ALTER COLUMN id SET DEFAULT nextval('public.order_orderdetail_id_seq'::regclass);
+
+
+--
+-- Name: order_ordermenu id; Type: DEFAULT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.order_ordermenu ALTER COLUMN id SET DEFAULT nextval('public.order_ordermenu_id_seq'::regclass);
+
+
+--
+-- Name: order_patient id; Type: DEFAULT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.order_patient ALTER COLUMN id SET DEFAULT nextval('public.order_patient_id_seq'::regclass);
+
+
+--
+-- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: tbcmarunouchi22
+--
+
+COPY public.auth_group (id, name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: tbcmarunouchi22
+--
+
+COPY public.auth_group_permissions (id, group_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: tbcmarunouchi22
+--
+
+COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
+1	Can add order detail	1	add_orderdetail
+2	Can change order detail	1	change_orderdetail
+3	Can delete order detail	1	delete_orderdetail
+4	Can view order detail	1	view_orderdetail
+5	Can add order menu	2	add_ordermenu
+6	Can change order menu	2	change_ordermenu
+7	Can delete order menu	2	delete_ordermenu
+8	Can view order menu	2	view_ordermenu
+9	Can add patient	3	add_patient
+10	Can change patient	3	change_patient
+11	Can delete patient	3	delete_patient
+12	Can view patient	3	view_patient
+13	Can add log entry	4	add_logentry
+14	Can change log entry	4	change_logentry
+15	Can delete log entry	4	delete_logentry
+16	Can view log entry	4	view_logentry
+17	Can add permission	5	add_permission
+18	Can change permission	5	change_permission
+19	Can delete permission	5	delete_permission
+20	Can view permission	5	view_permission
+21	Can add group	6	add_group
+22	Can change group	6	change_group
+23	Can delete group	6	delete_group
+24	Can view group	6	view_group
+25	Can add user	7	add_user
+26	Can change user	7	change_user
+27	Can delete user	7	delete_user
+28	Can view user	7	view_user
+29	Can add content type	8	add_contenttype
+30	Can change content type	8	change_contenttype
+31	Can delete content type	8	delete_contenttype
+32	Can view content type	8	view_contenttype
+33	Can add session	9	add_session
+34	Can change session	9	change_session
+35	Can delete session	9	delete_session
+36	Can view session	9	view_session
+\.
+
+
+--
+-- Data for Name: auth_user; Type: TABLE DATA; Schema: public; Owner: tbcmarunouchi22
+--
+
+COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
+3	pbkdf2_sha256$260000$eU3C7P7pxQtsQ1X0q5DIV3$ItQzhh9RS9GKkXlhq3WfD/6558t5sjc/5ssVEVs9sH4=	\N	f	marucounter				f	t	2021-09-16 16:23:43.707566+09
+4	pbkdf2_sha256$260000$Acml5QsqItIwNcye30jvmy$D5dDaekojlqgOja3/B1hIqPj0ShIggABcNMvXo0hAtg=	\N	f	maruentrance				f	t	2021-09-16 16:26:10.404661+09
+1	pbkdf2_sha256$260000$Q4lnadjEavOAMaN64SGlM4$k0ohmDYsz9AHD11okpMrotnFS4FDUaI0AVxF+LByVy0=	2021-09-21 12:10:11.838066+09	t	admin				t	t	2021-09-12 15:16:31+09
+\.
+
+
+--
+-- Data for Name: auth_user_groups; Type: TABLE DATA; Schema: public; Owner: tbcmarunouchi22
+--
+
+COPY public.auth_user_groups (id, user_id, group_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: tbcmarunouchi22
+--
+
+COPY public.auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: tbcmarunouchi22
+--
+
+COPY public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
+1	2021-09-12 15:22:15.077266+09	1	OrderMenu object (1)	1	[{"added": {}}]	2	1
+2	2021-09-12 15:24:10.741003+09	2	OrderMenu object (2)	1	[{"added": {}}]	2	1
+3	2021-09-12 15:29:37.969646+09	2	OrderMenu object (2)	3		2	1
+4	2021-09-12 15:29:37.974815+09	1	OrderMenu object (1)	3		2	1
+5	2021-09-12 15:30:28.360758+09	3	OrderMenu object (3)	1	[{"added": {}}]	2	1
+6	2021-09-12 15:30:56.357154+09	4	OrderMenu object (4)	1	[{"added": {}}]	2	1
+7	2021-09-12 15:31:18.335046+09	3	OrderMenu object (3)	3		2	1
+8	2021-09-12 15:31:49.404858+09	5	OrderMenu object (5)	1	[{"added": {}}]	2	1
+9	2021-09-12 15:33:45.863304+09	4	OrderMenu object (4)	3		2	1
+10	2021-09-12 15:34:03.285728+09	6	OrderMenu object (6)	1	[{"added": {}}]	2	1
+11	2021-09-12 15:34:16.62286+09	7	OrderMenu object (7)	1	[{"added": {}}]	2	1
+12	2021-09-12 15:34:37.89717+09	8	OrderMenu object (8)	1	[{"added": {}}]	2	1
+13	2021-09-12 15:34:51.622946+09	9	OrderMenu object (9)	1	[{"added": {}}]	2	1
+14	2021-09-12 15:35:12.55132+09	10	OrderMenu object (10)	1	[{"added": {}}]	2	1
+15	2021-09-12 15:35:22.885022+09	11	OrderMenu object (11)	1	[{"added": {}}]	2	1
+16	2021-09-12 15:35:45.262951+09	12	OrderMenu object (12)	1	[{"added": {}}]	2	1
+17	2021-09-12 15:36:00.093937+09	13	OrderMenu object (13)	1	[{"added": {}}]	2	1
+18	2021-09-12 15:36:13.917973+09	14	OrderMenu object (14)	1	[{"added": {}}]	2	1
+19	2021-09-12 15:39:46.202335+09	15	OrderMenu object (15)	1	[{"added": {}}]	2	1
+20	2021-09-12 15:40:30.973576+09	15	OrderMenu object (15)	2	[{"changed": {"fields": ["Code"]}}]	2	1
+21	2021-09-12 15:41:19.751448+09	16	OrderMenu object (16)	1	[{"added": {}}]	2	1
+22	2021-09-12 15:43:28.577655+09	17	OrderMenu object (17)	1	[{"added": {}}]	2	1
+23	2021-09-12 15:44:09.165111+09	18	OrderMenu object (18)	1	[{"added": {}}]	2	1
+24	2021-09-12 15:46:53.995584+09	19	OrderMenu object (19)	1	[{"added": {}}]	2	1
+25	2021-09-12 15:47:35.110333+09	20	OrderMenu object (20)	1	[{"added": {}}]	2	1
+26	2021-09-12 15:48:21.624861+09	21	OrderMenu object (21)	1	[{"added": {}}]	2	1
+27	2021-09-12 15:49:12.03699+09	22	OrderMenu object (22)	1	[{"added": {}}]	2	1
+28	2021-09-12 15:49:59.482032+09	23	OrderMenu object (23)	1	[{"added": {}}]	2	1
+29	2021-09-12 15:50:25.833972+09	24	OrderMenu object (24)	1	[{"added": {}}]	2	1
+30	2021-09-12 15:54:08.465167+09	25	OrderMenu object (25)	1	[{"added": {}}]	2	1
+31	2021-09-12 15:54:46.105961+09	26	OrderMenu object (26)	1	[{"added": {}}]	2	1
+32	2021-09-12 15:55:27.378199+09	27	OrderMenu object (27)	1	[{"added": {}}]	2	1
+33	2021-09-12 15:57:02.155849+09	28	OrderMenu object (28)	1	[{"added": {}}]	2	1
+34	2021-09-12 15:57:54.064083+09	29	OrderMenu object (29)	1	[{"added": {}}]	2	1
+35	2021-09-12 15:58:24.547361+09	30	OrderMenu object (30)	1	[{"added": {}}]	2	1
+36	2021-09-12 15:58:59.567358+09	31	OrderMenu object (31)	1	[{"added": {}}]	2	1
+37	2021-09-12 15:59:35.821796+09	32	OrderMenu object (32)	1	[{"added": {}}]	2	1
+38	2021-09-12 16:00:29.118216+09	33	OrderMenu object (33)	1	[{"added": {}}]	2	1
+39	2021-09-12 16:01:20.928993+09	34	OrderMenu object (34)	1	[{"added": {}}]	2	1
+40	2021-09-12 16:02:07.567252+09	35	OrderMenu object (35)	1	[{"added": {}}]	2	1
+41	2021-09-12 16:02:46.817478+09	36	OrderMenu object (36)	1	[{"added": {}}]	2	1
+42	2021-09-12 16:03:19.36554+09	37	OrderMenu object (37)	1	[{"added": {}}]	2	1
+43	2021-09-12 16:04:09.379549+09	38	OrderMenu object (38)	1	[{"added": {}}]	2	1
+44	2021-09-12 16:04:45.177631+09	39	OrderMenu object (39)	1	[{"added": {}}]	2	1
+45	2021-09-12 16:05:35.09905+09	40	OrderMenu object (40)	1	[{"added": {}}]	2	1
+46	2021-09-12 16:06:34.33687+09	41	OrderMenu object (41)	1	[{"added": {}}]	2	1
+47	2021-09-12 16:07:14.851122+09	42	OrderMenu object (42)	1	[{"added": {}}]	2	1
+48	2021-09-12 16:07:28.404538+09	43	OrderMenu object (43)	1	[{"added": {}}]	2	1
+49	2021-09-12 16:09:48.703329+09	44	OrderMenu object (44)	1	[{"added": {}}]	2	1
+50	2021-09-12 16:10:05.506173+09	45	OrderMenu object (45)	1	[{"added": {}}]	2	1
+51	2021-09-12 16:10:19.4497+09	46	OrderMenu object (46)	1	[{"added": {}}]	2	1
+52	2021-09-12 16:10:36.796503+09	47	OrderMenu object (47)	1	[{"added": {}}]	2	1
+53	2021-09-12 16:10:52.196411+09	48	OrderMenu object (48)	1	[{"added": {}}]	2	1
+54	2021-09-12 16:11:39.103016+09	49	OrderMenu object (49)	1	[{"added": {}}]	2	1
+55	2021-09-12 16:12:39.385359+09	50	OrderMenu object (50)	1	[{"added": {}}]	2	1
+56	2021-09-12 16:13:01.970593+09	51	OrderMenu object (51)	1	[{"added": {}}]	2	1
+57	2021-09-12 16:14:45.815688+09	52	OrderMenu object (52)	1	[{"added": {}}]	2	1
+58	2021-09-12 16:15:29.784905+09	53	OrderMenu object (53)	1	[{"added": {}}]	2	1
+59	2021-09-12 16:16:18.089055+09	54	OrderMenu object (54)	1	[{"added": {}}]	2	1
+60	2021-09-12 16:18:11.092434+09	55	OrderMenu object (55)	1	[{"added": {}}]	2	1
+61	2021-09-12 16:18:44.951239+09	56	OrderMenu object (56)	1	[{"added": {}}]	2	1
+62	2021-09-12 16:19:32.704061+09	57	OrderMenu object (57)	1	[{"added": {}}]	2	1
+63	2021-09-12 16:20:09.409414+09	58	OrderMenu object (58)	1	[{"added": {}}]	2	1
+64	2021-09-12 16:22:08.455922+09	59	OrderMenu object (59)	1	[{"added": {}}]	2	1
+65	2021-09-12 16:22:22.469125+09	60	OrderMenu object (60)	1	[{"added": {}}]	2	1
+66	2021-09-12 16:25:29.198585+09	61	OrderMenu object (61)	1	[{"added": {}}]	2	1
+67	2021-09-12 16:26:12.731304+09	62	OrderMenu object (62)	1	[{"added": {}}]	2	1
+68	2021-09-12 16:26:59.18416+09	63	OrderMenu object (63)	1	[{"added": {}}]	2	1
+69	2021-09-12 16:27:30.449788+09	64	OrderMenu object (64)	1	[{"added": {}}]	2	1
+70	2021-09-12 16:28:21.718366+09	65	OrderMenu object (65)	1	[{"added": {}}]	2	1
+71	2021-09-12 16:29:47.543162+09	66	OrderMenu object (66)	1	[{"added": {}}]	2	1
+72	2021-09-12 16:30:34.619937+09	67	OrderMenu object (67)	1	[{"added": {}}]	2	1
+73	2021-09-12 16:32:20.572674+09	68	OrderMenu object (68)	1	[{"added": {}}]	2	1
+74	2021-09-12 16:33:27.086559+09	69	OrderMenu object (69)	1	[{"added": {}}]	2	1
+75	2021-09-12 16:33:44.281709+09	70	OrderMenu object (70)	1	[{"added": {}}]	2	1
+76	2021-09-12 16:35:34.191608+09	71	OrderMenu object (71)	1	[{"added": {}}]	2	1
+77	2021-09-12 16:36:10.63441+09	72	OrderMenu object (72)	1	[{"added": {}}]	2	1
+78	2021-09-12 16:37:17.604196+09	73	OrderMenu object (73)	1	[{"added": {}}]	2	1
+79	2021-09-12 16:37:37.583387+09	74	OrderMenu object (74)	1	[{"added": {}}]	2	1
+80	2021-09-12 16:38:46.468077+09	75	OrderMenu object (75)	1	[{"added": {}}]	2	1
+81	2021-09-12 16:39:21.111578+09	76	OrderMenu object (76)	1	[{"added": {}}]	2	1
+82	2021-09-12 16:39:49.156079+09	77	OrderMenu object (77)	1	[{"added": {}}]	2	1
+83	2021-09-12 16:40:53.803276+09	78	OrderMenu object (78)	1	[{"added": {}}]	2	1
+84	2021-09-12 16:41:33.467411+09	79	OrderMenu object (79)	1	[{"added": {}}]	2	1
+85	2021-09-12 16:41:50.136825+09	80	OrderMenu object (80)	1	[{"added": {}}]	2	1
+86	2021-09-12 16:43:28.087935+09	81	OrderMenu object (81)	1	[{"added": {}}]	2	1
+87	2021-09-12 16:43:55.807647+09	82	OrderMenu object (82)	1	[{"added": {}}]	2	1
+88	2021-09-12 16:44:18.489908+09	83	OrderMenu object (83)	1	[{"added": {}}]	2	1
+89	2021-09-12 16:44:50.005624+09	84	OrderMenu object (84)	1	[{"added": {}}]	2	1
+90	2021-09-12 16:45:35.176039+09	85	OrderMenu object (85)	1	[{"added": {}}]	2	1
+91	2021-09-12 16:46:07.883432+09	86	OrderMenu object (86)	1	[{"added": {}}]	2	1
+92	2021-09-12 16:47:01.623448+09	87	OrderMenu object (87)	1	[{"added": {}}]	2	1
+93	2021-09-12 16:47:57.766251+09	88	OrderMenu object (88)	1	[{"added": {}}]	2	1
+94	2021-09-12 16:48:38.985328+09	89	OrderMenu object (89)	1	[{"added": {}}]	2	1
+95	2021-09-12 16:49:08.368656+09	90	OrderMenu object (90)	1	[{"added": {}}]	2	1
+96	2021-09-12 16:49:58.099212+09	91	OrderMenu object (91)	1	[{"added": {}}]	2	1
+97	2021-09-12 16:50:47.847737+09	92	OrderMenu object (92)	1	[{"added": {}}]	2	1
+98	2021-09-12 16:51:18.04222+09	93	OrderMenu object (93)	1	[{"added": {}}]	2	1
+99	2021-09-12 16:52:48.318189+09	94	OrderMenu object (94)	1	[{"added": {}}]	2	1
+100	2021-09-12 16:54:27.07388+09	95	OrderMenu object (95)	1	[{"added": {}}]	2	1
+101	2021-09-12 16:55:12.578835+09	96	OrderMenu object (96)	1	[{"added": {}}]	2	1
+102	2021-09-12 16:56:27.068757+09	97	OrderMenu object (97)	1	[{"added": {}}]	2	1
+103	2021-09-12 16:56:39.767959+09	98	OrderMenu object (98)	1	[{"added": {}}]	2	1
+104	2021-09-12 16:58:52.674998+09	99	OrderMenu object (99)	1	[{"added": {}}]	2	1
+105	2021-09-12 16:59:26.046483+09	100	OrderMenu object (100)	1	[{"added": {}}]	2	1
+106	2021-09-12 17:00:30.527572+09	101	OrderMenu object (101)	1	[{"added": {}}]	2	1
+107	2021-09-12 17:01:03.488276+09	102	OrderMenu object (102)	1	[{"added": {}}]	2	1
+108	2021-09-12 17:01:40.680594+09	103	OrderMenu object (103)	1	[{"added": {}}]	2	1
+109	2021-09-12 17:02:53.212208+09	104	OrderMenu object (104)	1	[{"added": {}}]	2	1
+110	2021-09-12 17:03:27.947021+09	105	OrderMenu object (105)	1	[{"added": {}}]	2	1
+111	2021-09-12 17:04:02.062177+09	106	OrderMenu object (106)	1	[{"added": {}}]	2	1
+112	2021-09-12 17:04:26.276786+09	107	OrderMenu object (107)	1	[{"added": {}}]	2	1
+113	2021-09-12 17:27:32.292685+09	4	OrderDetail object (4)	3		1	1
+114	2021-09-12 17:27:32.298084+09	3	OrderDetail object (3)	3		1	1
+115	2021-09-12 17:27:32.300217+09	2	OrderDetail object (2)	3		1	1
+116	2021-09-12 17:27:32.301874+09	1	OrderDetail object (1)	3		1	1
+117	2021-09-12 17:37:05.316769+09	7	OrderDetail object (7)	3		1	1
+118	2021-09-12 17:37:05.320779+09	6	OrderDetail object (6)	3		1	1
+119	2021-09-12 17:37:05.322371+09	5	OrderDetail object (5)	3		1	1
+120	2021-09-12 17:56:55.326155+09	5	OrderMenu object (5)	2	[{"changed": {"fields": ["Type"]}}]	2	1
+121	2021-09-15 10:49:09.706767+09	50	OrderMenu object (50)	2	[{"changed": {"fields": ["Type", "Ivtype"]}}]	2	1
+122	2021-09-15 10:52:50.723473+09	97	OrderMenu object (97)	2	[{"changed": {"fields": ["Ivtype"]}}]	2	1
+123	2021-09-15 10:53:17.599839+09	96	OrderMenu object (96)	2	[{"changed": {"fields": ["Ivtype"]}}]	2	1
+124	2021-09-15 10:53:32.922245+09	95	OrderMenu object (95)	2	[{"changed": {"fields": ["Ivtype"]}}]	2	1
+125	2021-09-15 10:53:44.162798+09	94	OrderMenu object (94)	2	[{"changed": {"fields": ["Ivtype"]}}]	2	1
+126	2021-09-15 10:53:50.787448+09	93	OrderMenu object (93)	2	[{"changed": {"fields": ["Ivtype"]}}]	2	1
+127	2021-09-15 10:53:56.124719+09	92	OrderMenu object (92)	2	[{"changed": {"fields": ["Ivtype"]}}]	2	1
+128	2021-09-15 10:54:53.413032+09	15	OrderMenu object (15)	2	[{"changed": {"fields": ["Ivtype"]}}]	2	1
+129	2021-09-15 10:55:02.003826+09	16	OrderMenu object (16)	2	[{"changed": {"fields": ["Ivtype"]}}]	2	1
+130	2021-09-15 10:55:21.206885+09	17	OrderMenu object (17)	2	[{"changed": {"fields": ["Ivtype"]}}]	2	1
+131	2021-09-15 10:55:29.438053+09	18	OrderMenu object (18)	2	[{"changed": {"fields": ["Ivtype"]}}]	2	1
+132	2021-09-15 10:55:52.485366+09	20	OrderMenu object (20)	2	[{"changed": {"fields": ["Ivtype"]}}]	2	1
+133	2021-09-15 10:56:47.485058+09	21	OrderMenu object (21)	2	[{"changed": {"fields": ["Ivtype"]}}]	2	1
+134	2021-09-15 10:57:02.007245+09	22	OrderMenu object (22)	2	[{"changed": {"fields": ["Ivtype"]}}]	2	1
+135	2021-09-15 10:57:11.817071+09	23	OrderMenu object (23)	2	[{"changed": {"fields": ["Ivtype"]}}]	2	1
+136	2021-09-15 10:57:48.430259+09	19	OrderMenu object (19)	2	[{"changed": {"fields": ["Ivtype"]}}]	2	1
+137	2021-09-15 13:52:44.683957+09	29	OrderDetail object (29)	3		1	1
+138	2021-09-15 13:52:44.69599+09	28	OrderDetail object (28)	3		1	1
+139	2021-09-15 13:52:44.69774+09	27	OrderDetail object (27)	3		1	1
+140	2021-09-15 13:52:44.698914+09	26	OrderDetail object (26)	3		1	1
+141	2021-09-15 13:52:44.700325+09	25	OrderDetail object (25)	3		1	1
+142	2021-09-15 13:52:44.701893+09	24	OrderDetail object (24)	3		1	1
+143	2021-09-15 13:52:44.703888+09	23	OrderDetail object (23)	3		1	1
+144	2021-09-15 13:52:44.705304+09	22	OrderDetail object (22)	3		1	1
+145	2021-09-15 13:52:44.706123+09	21	OrderDetail object (21)	3		1	1
+146	2021-09-15 13:52:44.707166+09	20	OrderDetail object (20)	3		1	1
+147	2021-09-15 13:52:44.708102+09	19	OrderDetail object (19)	3		1	1
+148	2021-09-15 13:52:44.709207+09	18	OrderDetail object (18)	3		1	1
+149	2021-09-15 13:52:44.710494+09	17	OrderDetail object (17)	3		1	1
+150	2021-09-15 13:52:44.711701+09	16	OrderDetail object (16)	3		1	1
+151	2021-09-15 13:52:44.712607+09	15	OrderDetail object (15)	3		1	1
+152	2021-09-15 13:52:44.713515+09	14	OrderDetail object (14)	3		1	1
+153	2021-09-15 13:52:44.714423+09	13	OrderDetail object (13)	3		1	1
+154	2021-09-15 13:52:44.715642+09	12	OrderDetail object (12)	3		1	1
+155	2021-09-15 13:52:44.717173+09	11	OrderDetail object (11)	3		1	1
+156	2021-09-15 13:52:44.71852+09	10	OrderDetail object (10)	3		1	1
+157	2021-09-15 13:52:44.719777+09	9	OrderDetail object (9)	3		1	1
+158	2021-09-15 13:52:44.721295+09	8	OrderDetail object (8)	3		1	1
+159	2021-09-15 13:59:46.14704+09	74	OrderMenu object (74)	3		2	1
+160	2021-09-15 13:59:46.152865+09	51	OrderMenu object (51)	3		2	1
+161	2021-09-15 13:59:46.15492+09	14	OrderMenu object (14)	3		2	1
+162	2021-09-15 14:00:05.135892+09	98	OrderMenu object (98)	3		2	1
+163	2021-09-15 14:00:05.139912+09	80	OrderMenu object (80)	3		2	1
+164	2021-09-15 14:00:05.141641+09	70	OrderMenu object (70)	3		2	1
+165	2021-09-15 14:00:05.143549+09	60	OrderMenu object (60)	3		2	1
+166	2021-09-15 14:00:05.144623+09	43	OrderMenu object (43)	3		2	1
+167	2021-09-15 14:00:05.147037+09	24	OrderMenu object (24)	3		2	1
+168	2021-09-16 16:21:14.108723+09	2	john	3		7	1
+169	2021-09-16 16:23:43.884362+09	3	marucounter	1	[{"added": {}}]	7	1
+170	2021-09-16 16:24:26.369677+09	1	admin	2	[{"changed": {"fields": ["Email address"]}}]	7	1
+171	2021-09-16 16:26:10.580169+09	4	maruentrance	1	[{"added": {}}]	7	1
+172	2021-09-21 14:07:07.082125+09	37	OrderDetail object (37)	3		1	1
+173	2021-09-21 14:07:07.097134+09	36	OrderDetail object (36)	3		1	1
+174	2021-09-21 14:07:07.101106+09	35	OrderDetail object (35)	3		1	1
+175	2021-09-21 14:07:07.103092+09	34	OrderDetail object (34)	3		1	1
+176	2021-09-21 14:07:07.104066+09	33	OrderDetail object (33)	3		1	1
+177	2021-09-21 14:07:07.104912+09	32	OrderDetail object (32)	3		1	1
+178	2021-09-21 14:07:07.105946+09	31	OrderDetail object (31)	3		1	1
+179	2021-09-21 14:07:07.10668+09	30	OrderDetail object (30)	3		1	1
+\.
+
+
+--
+-- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: tbcmarunouchi22
+--
+
+COPY public.django_content_type (id, app_label, model) FROM stdin;
+1	order	orderdetail
+2	order	ordermenu
+3	order	patient
+4	admin	logentry
+5	auth	permission
+6	auth	group
+7	auth	user
+8	contenttypes	contenttype
+9	sessions	session
+\.
+
+
+--
+-- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: tbcmarunouchi22
+--
+
+COPY public.django_migrations (id, app, name, applied) FROM stdin;
+1	contenttypes	0001_initial	2021-09-12 15:11:58.533488+09
+2	auth	0001_initial	2021-09-12 15:11:58.576414+09
+3	admin	0001_initial	2021-09-12 15:11:58.58655+09
+4	admin	0002_logentry_remove_auto_add	2021-09-12 15:11:58.591465+09
+5	admin	0003_logentry_add_action_flag_choices	2021-09-12 15:11:58.596541+09
+6	contenttypes	0002_remove_content_type_name	2021-09-12 15:11:58.607078+09
+7	auth	0002_alter_permission_name_max_length	2021-09-12 15:11:58.612362+09
+8	auth	0003_alter_user_email_max_length	2021-09-12 15:11:58.616714+09
+9	auth	0004_alter_user_username_opts	2021-09-12 15:11:58.621898+09
+10	auth	0005_alter_user_last_login_null	2021-09-12 15:11:58.626959+09
+11	auth	0006_require_contenttypes_0002	2021-09-12 15:11:58.628109+09
+12	auth	0007_alter_validators_add_error_messages	2021-09-12 15:11:58.632693+09
+13	auth	0008_alter_user_username_max_length	2021-09-12 15:11:58.641552+09
+14	auth	0009_alter_user_last_name_max_length	2021-09-12 15:11:58.646876+09
+15	auth	0010_alter_group_name_max_length	2021-09-12 15:11:58.654291+09
+16	auth	0011_update_proxy_permissions	2021-09-12 15:11:58.660237+09
+17	auth	0012_alter_user_first_name_max_length	2021-09-12 15:11:58.665558+09
+18	order	0001_initial	2021-09-12 15:11:58.680215+09
+19	sessions	0001_initial	2021-09-12 15:11:58.687519+09
+20	order	0002_alter_ordermenu_category	2021-09-12 15:29:53.606257+09
+21	order	0003_auto_20210912_0633	2021-09-12 15:33:25.743654+09
+22	order	0004_auto_20210915_0146	2021-09-15 10:47:11.480657+09
+\.
+
+
+--
+-- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: tbcmarunouchi22
+--
+
+COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
+azo02y3iw0k8e03ad7qmbz2cyu01h3p6	.eJxVjDsOwjAQBe_iGln-Z5eSnjNY67VNAiiW4qRC3B0ipYD2zcx7iUjbOsatlyVOWZyFFqffLRE_yryDfKf51iS3eV2mJHdFHrTLa8vleTncv4OR-vitFQBZRqMqAKtgXaFagKtDB9qAxTSE4g3ojMn5nG3yAWkg1gaJMYn3B9JdN7s:1mPInF:aeTeAXYLaKeI9aJMAIPW9Co2jNeKkvnfWfc21Dk6xgk	2021-09-26 15:16:45.273462+09
+87gr6gekbvmyop64wq30h59tatjkzxfa	.eJxVjDsOwjAQBe_iGln-Z5eSnjNY67VNAiiW4qRC3B0ipYD2zcx7iUjbOsatlyVOWZyFFqffLRE_yryDfKf51iS3eV2mJHdFHrTLa8vleTncv4OR-vitFQBZRqMqAKtgXaFagKtDB9qAxTSE4g3ojMn5nG3yAWkg1gaJMYn3B9JdN7s:1mSWAd:ejXKp-u3t5MILLEjnQsR_w3cHayl-tqvVWLhlw1XzTI	2021-10-05 12:10:11.839589+09
+\.
+
+
+--
+-- Data for Name: order_orderdetail; Type: TABLE DATA; Schema: public; Owner: tbcmarunouchi22
+--
+
+COPY public.order_orderdetail (id, ptname, kananame, patientid, felicaid, ordername) FROM stdin;
+\.
+
+
+--
+-- Data for Name: order_ordermenu; Type: TABLE DATA; Schema: public; Owner: tbcmarunouchi22
+--
+
+COPY public.order_ordermenu (id, category, name, description, price, code, stock, type, ivtype) FROM stdin;
+6	渡航ワクチン	北・中央アジア		\N	\N	\N	\N	
+7	渡航ワクチン	中東		\N	\N	\N	\N	
+8	渡航ワクチン	アフリカ		\N	\N	\N	\N	
+9	渡航ワクチン	東ヨーロッパ		\N	\N	\N	\N	
+10	渡航ワクチン	西·北ヨーロッパ、北アメリカ		\N	\N	\N	\N	
+11	渡航ワクチン	中南アメリカ		\N	\N	\N	\N	
+12	渡航ワクチン	オセアニア		\N	\N	\N	\N	
+13	渡航ワクチン	太平洋の島々		\N	\N	\N	\N	
+25	ビタミン剤	美白ベーシックセット	ビタミンC，トラネキサム酸、Lシステインの美白基本セットです。	4900	096210042	\N	rp	
+26	ビタミン剤	美白スタンダードセット	ベーシックセットにビタミンEを配合して総合的な効果が期待できます。	5900	096210043	\N	rp	
+27	ビタミン剤	美白プレミアムセット	スタンダードセットにビオチンを加え、高い美白効果が得られます。	6900	096210044	\N	rp	
+28	ビタミン剤	美白セットグルタチオン	プレミアムセットにグルタチオンを追加した、最高の美白レシピです。	7900	096210045	\N	rp	
+29	ビタミン剤	高濃度ビタミンCセット	ビタミンCを3倍量、これにトランサミンを加えた美肌のためのセットです。	5900	096210046	\N	rp	
+30	ビタミン剤	ニキビセット	ニキビを予防するための特別なビタミンセットです。	3900	096210047	\N	rp	
+31	ビタミン剤	肝斑（かんぱん）セット	肝斑（かんぱん）を予防するためにおすすめのセットです。	2900	096210048	\N	rp	
+32	ビタミン剤	腸活セット	ビタミンD+ビオフェルミン　効果的に腸内フローラを整えます。	2900	096210049	\N	rp	
+33	ビタミン剤	ビタミンB1	アリナミン1ヶ月分、90錠です。	1800	096210089	\N	rp	
+34	ビタミン剤	ビタミンB2	フラビタン1ヶ月分、90錠です。	1800	096210090	\N	rp	
+35	ビタミン剤	ビタミンB6	ピドキサール1ヶ月分、90錠です。	1800	096210091	\N	rp	
+36	ビタミン剤	ビタミンC	シナール1ヶ月分、90錠です。	1800	096210094	\N	rp	
+37	ビタミン剤	ビタミンD	アルファロール1ヶ月分、90錠です。	1800	096210092	\N	rp	
+38	ビタミン剤	ビタミンE	ユベラ1ヶ月分、90錠です。	1800	096210093	\N	rp	
+39	ビタミン剤	Lシステイン	ハイチオール1ヶ月分、90錠です。	2000	096210068	\N	rp	
+40	ビタミン剤	トラネキサム酸	トランサミン1ヶ月分、90錠です。	2000	096210069	\N	rp	
+41	ビタミン剤	ビタミンH	ビオチン1ヶ月分、90錠です。	2000	096210070	\N	rp	
+42	ビタミン剤	グルタチオン	グルタチオン１ヶ月分です。	2500	096210071	\N	rp	
+44	一般ワクチン	妊娠のためのワクチン		\N	\N	\N	\N	
+45	一般ワクチン	医療・介護従事者のためのワクチン		\N	\N	\N	\N	
+46	一般ワクチン	学生のためのワクチン		\N	\N	\N	\N	
+47	一般ワクチン	はしか・風しんワクチン		\N	\N	\N	\N	
+48	一般ワクチン	公費予防接種		\N	\N	\N	\N	
+49	一般ワクチン	定期予防接種		\N	\N	\N	\N	
+52	アフターピル・低用量ピル	レボノルゲストレル	ノルレボの国産ジェネリック薬品で、1回内服のみで完了する新しい緊急避妊薬です。	8900	096210032	\N	rp	
+53	アフターピル・低用量ピル	アイピル	ノルレボの輸入ジェネリック薬品で、成分や効果は同等とされています。	6900	096210040	\N	rp	
+54	アフターピル・低用量ピル	エラ	性交渉後、120時間までに内服すれば高い避妊効果が得られます。	10900	096210041	\N	rp	
+55	アフターピル・低用量ピル	生理調整薬	生理を早める、もしくは遅らせることで、避けたい日程から生理をずらすことができます。	3900	096210034	\N	rp	
+56	アフターピル・低用量ピル	マーベロン	一相性	2900	096210072	\N	rp	
+57	アフターピル・低用量ピル	ファボワール	一相性 ジェネリック	2600	096210073	\N	rp	
+58	アフターピル・低用量ピル	トリキュラー	三相性	2900	096210074	\N	rp	
+16	美容健康注射	ダイエット注射	脂肪の燃焼を促進し、痩せやすい体質へ改善する効果が期待できます。	2900	096310100	\N	iv	静脈注射
+17	美容健康注射	美肌ビタミン注射	シミの改善、美白、日焼け跡のケア、ニキビや肌荒れの改善が期待できます。	2900	096310102	\N	iv	静脈注射
+18	美容健康注射	白玉美白注射	話題の白玉注射が登場。最強の抗酸化·美白効果のある特別な注射です。	8900	096310103	\N	iv	静脈注射
+20	美容健康注射	美容にんにく注射	1本で疲労回復と美容効果をチャージできるので、忙しい方にもお薦めです。	4900	096310099	\N	iv	静脈注射
+21	美容健康注射	シングルプラセンタ注射	人の胎盤から抽出された生理活性物質で、全身の細胞が活性化されます。（通常価格1,900円）	1900	096310015	\N	iv	皮下注射
+23	美容健康注射	トリプルプラセンタ注射	トリプルも登場。アンチエイジングには週1回の継続をお薦めしています。	2900	096310104	\N	iv	皮下注射
+19	美容健康注射	白玉美白注射ハーフ	グルタチオン600mgのハーフサイズ。話題の白玉注射を気軽にお試しいただけます。	4900	096310122	\N	iv	静脈注射
+59	アフターピル・低用量ピル	ラベルフィーユ	三相性 ジェネリック	2600	096210075	\N	rp	
+61	美容薬品	グラッシュビスタ	まつ毛を伸ばす効果がある、人気の睫毛剤です。	16900	096210088	\N	rp	
+62	美容薬品	モデルアイズ	輸入ジェネリック薬品の睫毛剤で、まつ毛育毛の導入としてお試し下さい。	8900	096210051	\N	rp	
+63	美容薬品	トレチノイン0.05% 20g	シミ取り効果のある外用剤です。大容量タイプです。	3900	096210052	\N	rp	
+64	美容薬品	ハイドロキノン4% 20g	美白効果のある外用薬です。	3900	096210053	\N	rp	
+65	美容薬品	ヘリオケア	夏の日焼け対策にお薦めです。	4900	096210054	\N	rp	
+66	美容薬品	ヘパリン類似物質油性クリーム25g	人気の保湿剤ヒルドイドクリームのジェネリック薬品です。	490	096210055	\N	rp	
+67	美容薬品	ヘパリン類似物質油性ローション50g	人気の保湿剤ヒルドイドクリームのジェネリック薬品です。	790	096210056	\N	rp	
+68	美容薬品	ヘパリン類似物質泡状スプレー	ヒルドイドフォームのジェネリック薬品です。	1790	096210058	\N	rp	
+69	美容薬品	ラシャスリップス	保湿効果、ハリ、つや、滑らかさを与え、唇の輪郭を際立たせるリップ美容液です。	6900	096210076	\N	rp	
+71	トラベル予防薬	高山病予防薬	2,000m以上の高地へ渡航予定の方へ、ダイアモックスを処方します。	2900	096210009	\N	rp	
+72	トラベル予防薬	マラリア予防薬	アジアやアフリカなど熱帯地方へ渡航予定の方へ、マラロンを処方します。(1日分)	750	096210008	\N	rp	
+73	トラベル予防薬	トラベル予備薬	頭痛薬・整腸剤・酔止め・かゆみ止めなど、海外滞在時によく使う薬を処方します。	2900	096210026	\N	rp	
+75	ED治療薬	シルデナフィル	バイアグラのジェネリック薬品で、長年の実績がある薬剤です。	950	096210022	\N	rp	
+76	ED治療薬	レビトラ	バイアグラの改良板で、より早くより高い効果が期待できます。	1950	096210084	\N	rp	
+77	ED治療薬	シアリス	1回の内服で24時間効果が持続します。	1850	096210086	\N	rp	
+78	ED治療薬	タダラフィル	シアリスのジェネリック薬品が登場、お求めやすい価格となっています。	1450	096210095	\N	rp	
+79	ED治療薬	バルデナフィル	レビトラと同成分の国産ジェネリック薬で、同様の効果が期待できます。	1550	096210085	\N	rp	
+81	ヘルスチェック・健康診断	簡易健診	診断書を即日発行できる、簡易検査と医師の診察を組み合わせた健康診断です。	5500	\N	\N	doc	
+82	ヘルスチェック・健康診断	即日健診	診断書を即日発行できる、簡易検査と医師の診察を組み合わせた健康診断です。	6000	\N	\N	doc	
+83	ヘルスチェック・健康診断	生活習慣病	特定健診と同等の採血項目を含んだ標準的な健康診断です。	7500	\N	\N	doc	
+84	ヘルスチェック・健康診断	スタンダード	血液検査と尿検査で幅広く詳しい項目を含んだ安心のセットです。	9500	\N	\N	doc	
+85	ヘルスチェック・健康診断	プレミアム	新機能や腎機能、肝炎ウイルスなども網羅した、総合的な特別パッケージです。	13500	\N	\N	doc	
+86	ヘルスチェック・健康診断	フルコース	血液検査、尿検査に加え、心電図検査や聴力検査、視力検査など全身を網羅した健康診断です。	18500	\N	\N	doc	
+87	ヘルスチェック・健康診断	団体信用生命保険用健診	加入者向けの規定健診です。	9500	\N	\N	doc	
+88	ヘルスチェック・健康診断	雇入れ時健診	入職時に必要な項目を網羅した法定健診です。	15500	\N	\N	doc	
+89	ヘルスチェック・健康診断	定期健診	毎年の実施が義務付けられている法定健診です。	15500	\N	\N	doc	
+90	ヘルスチェック・健康診断	がんリスク検診	全身のがんのスクリーニング検査で、幅広くがんの可能性をチェックします。	15500	\N	\N	doc	
+91	ヘルスチェック・健康診断	カスタマイズ、相談する		\N	\N	\N	\N	
+99	AGA治療薬	フィナステリド	男性型脱毛に効果が認められているプロペシアの国産ジェネリック薬品です。	5800	096210019	\N	rp	
+100	AGA治療薬	フィンペシア	プロペシアの輸入ジェネリック薬品で、効果や成分は同等とされています。	3800	096210078	\N	rp	
+101	AGA治療薬	デュタステリド	ザガーロの輸入ジェネリック薬品が登場、お求めやすい価格となっています。	6800	096210037	\N	rp	
+102	AGA治療薬	ミノキシジル5%	発毛・育毛効果が得られるリアップ外用薬の、輸入ジェネリック薬品です。	4800	096210028	\N	rp	
+96	疲労回復注射	美容にんにく注射	1本で疲労回復と美容効果をチャージできるので、忙しい方にもお薦めです。	4900	096310099	\N	iv	静脈注射
+94	疲労回復注射	全部入りにんにく注射	一番人気。二日酔いや疲労回復に即効性があるお得な全部入り注射です。	2900	096310011	\N	iv	静脈注射
+93	疲労回復注射	ダブルにんにく注射	風邪のひきはじめ、睡眠不足、仕事で疲れが溜まっているときにお薦めです。	2400	096310009	\N	iv	静脈注射
+92	疲労回復注射	シングルにんにく注射	元気がないときに栄養ドリンク代わりに効果的です。	1900	096310008	\N	iv	静脈注射
+103	AGA治療薬	ベルトリド	ザガーロの輸入ジェネリック薬品が登場、お求めやすい価格となっています。	6800	096210037	\N	rp	
+104	AGA治療薬	デュタステリド	ザガーロの輸入ジェネリック薬品が登場、お求めやすい価格となっています。	7800	096210100	\N	rp	
+105	AGA治療薬	ルグゼバイブ	女性の脱毛治療に使われる総合ビタミン薬品パントガールのジェネリック薬品です。	9800	096210061	\N	rp	
+106	AGA治療薬	ミノキシジル2%	女性の発毛·育毛に効果が期待できる外用薬品です。	4800	096210039	\N	rp	
+107	その他・ご相談	その他、直接ご相談		\N	\N	\N	\N	
+5	渡航ワクチン	東アジア・東南アジア・南アジア		\N	\N	\N	jihi_other	
+50	一般ワクチン	インフルエンザワクチン		3900	096310124	\N	iv	皮下注射
+97	疲労回復注射	ビタミンC追加	ビタミンCの追加もおすすめです。	500	096310030	\N	iv	静脈注射
+95	疲労回復注射	プレミアムにんにく注射	特別なレシピ。どうしても外せない仕事、大事なイベント前などにどうぞ。	3900	096310072	\N	iv	静脈注射
+15	美容健康注射	アンチエイジング注射	強い抗酸化作用のある成分の注射レシピで、皮膚の健康維持にお薦めです。	2900	096310101	\N	iv	静脈注射
+22	美容健康注射	ダブルプラセンタ注射	活性酸素を減らし、新陳代謝を上げ、血流を良くすることで高い美容効果があります。（通常価格2,400円）	2400	096310016	\N	iv	皮下注射
+\.
+
+
+--
+-- Data for Name: order_patient; Type: TABLE DATA; Schema: public; Owner: tbcmarunouchi22
+--
+
+COPY public.order_patient (id, fullname_kana, fullname_kanji, birthday, gender, patientid, tel_number, postal_code, address, insurer_id) FROM stdin;
+\.
+
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tbcmarunouchi22
+--
+
+SELECT pg_catalog.setval('public.auth_group_id_seq', 1, false);
+
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tbcmarunouchi22
+--
+
+SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 1, false);
+
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tbcmarunouchi22
+--
+
+SELECT pg_catalog.setval('public.auth_permission_id_seq', 36, true);
+
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tbcmarunouchi22
+--
+
+SELECT pg_catalog.setval('public.auth_user_groups_id_seq', 1, false);
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tbcmarunouchi22
+--
+
+SELECT pg_catalog.setval('public.auth_user_id_seq', 4, true);
+
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tbcmarunouchi22
+--
+
+SELECT pg_catalog.setval('public.auth_user_user_permissions_id_seq', 1, false);
+
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tbcmarunouchi22
+--
+
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 179, true);
+
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tbcmarunouchi22
+--
+
+SELECT pg_catalog.setval('public.django_content_type_id_seq', 9, true);
+
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tbcmarunouchi22
+--
+
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 22, true);
+
+
+--
+-- Name: order_orderdetail_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tbcmarunouchi22
+--
+
+SELECT pg_catalog.setval('public.order_orderdetail_id_seq', 37, true);
+
+
+--
+-- Name: order_ordermenu_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tbcmarunouchi22
+--
+
+SELECT pg_catalog.setval('public.order_ordermenu_id_seq', 107, true);
+
+
+--
+-- Name: order_patient_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tbcmarunouchi22
+--
+
+SELECT pg_catalog.setval('public.order_patient_id_seq', 1, false);
+
+
+--
+-- Name: auth_group auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_name_key UNIQUE (name);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_permission_id_0cd325b0_uniq; Type: CONSTRAINT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_permission_id_0cd325b0_uniq UNIQUE (group_id, permission_id);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_codename_01ab375a_uniq; Type: CONSTRAINT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_codename_01ab375a_uniq UNIQUE (content_type_id, codename);
+
+
+--
+-- Name: auth_permission auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups auth_user_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups auth_user_groups_user_id_group_id_94350c0c_uniq; Type: CONSTRAINT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_group_id_94350c0c_uniq UNIQUE (user_id, group_id);
+
+
+--
+-- Name: auth_user auth_user_pkey; Type: CONSTRAINT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.auth_user
+    ADD CONSTRAINT auth_user_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_user_id_permission_id_14a6b632_uniq; Type: CONSTRAINT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_permission_id_14a6b632_uniq UNIQUE (user_id, permission_id);
+
+
+--
+-- Name: auth_user auth_user_username_key; Type: CONSTRAINT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.auth_user
+    ADD CONSTRAINT auth_user_username_key UNIQUE (username);
+
+
+--
+-- Name: django_admin_log django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_content_type django_content_type_app_label_model_76bd3d3b_uniq; Type: CONSTRAINT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_app_label_model_76bd3d3b_uniq UNIQUE (app_label, model);
+
+
+--
+-- Name: django_content_type django_content_type_pkey; Type: CONSTRAINT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_migrations django_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.django_migrations
+    ADD CONSTRAINT django_migrations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_session django_session_pkey; Type: CONSTRAINT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.django_session
+    ADD CONSTRAINT django_session_pkey PRIMARY KEY (session_key);
+
+
+--
+-- Name: order_orderdetail order_orderdetail_pkey; Type: CONSTRAINT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.order_orderdetail
+    ADD CONSTRAINT order_orderdetail_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: order_ordermenu order_ordermenu_pkey; Type: CONSTRAINT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.order_ordermenu
+    ADD CONSTRAINT order_ordermenu_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: order_patient order_patient_pkey; Type: CONSTRAINT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.order_patient
+    ADD CONSTRAINT order_patient_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group_name_a6ea08ec_like; Type: INDEX; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE INDEX auth_group_name_a6ea08ec_like ON public.auth_group USING btree (name varchar_pattern_ops);
+
+
+--
+-- Name: auth_group_permissions_group_id_b120cbf9; Type: INDEX; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE INDEX auth_group_permissions_group_id_b120cbf9 ON public.auth_group_permissions USING btree (group_id);
+
+
+--
+-- Name: auth_group_permissions_permission_id_84c5c92e; Type: INDEX; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE INDEX auth_group_permissions_permission_id_84c5c92e ON public.auth_group_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_permission_content_type_id_2f476e4b; Type: INDEX; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE INDEX auth_permission_content_type_id_2f476e4b ON public.auth_permission USING btree (content_type_id);
+
+
+--
+-- Name: auth_user_groups_group_id_97559544; Type: INDEX; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE INDEX auth_user_groups_group_id_97559544 ON public.auth_user_groups USING btree (group_id);
+
+
+--
+-- Name: auth_user_groups_user_id_6a12ed8b; Type: INDEX; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE INDEX auth_user_groups_user_id_6a12ed8b ON public.auth_user_groups USING btree (user_id);
+
+
+--
+-- Name: auth_user_user_permissions_permission_id_1fbb5f2c; Type: INDEX; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE INDEX auth_user_user_permissions_permission_id_1fbb5f2c ON public.auth_user_user_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_user_user_permissions_user_id_a95ead1b; Type: INDEX; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE INDEX auth_user_user_permissions_user_id_a95ead1b ON public.auth_user_user_permissions USING btree (user_id);
+
+
+--
+-- Name: auth_user_username_6821ab7c_like; Type: INDEX; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE INDEX auth_user_username_6821ab7c_like ON public.auth_user USING btree (username varchar_pattern_ops);
+
+
+--
+-- Name: django_admin_log_content_type_id_c4bce8eb; Type: INDEX; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE INDEX django_admin_log_content_type_id_c4bce8eb ON public.django_admin_log USING btree (content_type_id);
+
+
+--
+-- Name: django_admin_log_user_id_c564eba6; Type: INDEX; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE INDEX django_admin_log_user_id_c564eba6 ON public.django_admin_log USING btree (user_id);
+
+
+--
+-- Name: django_session_expire_date_a5c62663; Type: INDEX; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE INDEX django_session_expire_date_a5c62663 ON public.django_session USING btree (expire_date);
+
+
+--
+-- Name: django_session_session_key_c0390e0f_like; Type: INDEX; Schema: public; Owner: tbcmarunouchi22
+--
+
+CREATE INDEX django_session_session_key_c0390e0f_like ON public.django_session USING btree (session_key varchar_pattern_ops);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissio_permission_id_84c5c92e_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissio_permission_id_84c5c92e_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_b120cbf9_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_b120cbf9_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_2f476e4b_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_2f476e4b_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups auth_user_groups_group_id_97559544_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_group_id_97559544_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups auth_user_groups_user_id_6a12ed8b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_6a12ed8b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_content_type_id_c4bce8eb_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_content_type_id_c4bce8eb_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_user_id_c564eba6_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: tbcmarunouchi22
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_user_id_c564eba6_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: SCHEMA public; Type: ACL; Schema: -; Owner: tbcmarunouchi22
+--
+
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

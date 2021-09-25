@@ -14,3 +14,13 @@ python manage.py shell
 
 psql起動
 brew services start postgresql@10
+
+dbバックアップ
+pg_dump -h localhost -U tbcmarunouchi22('user') -c maruproject('dbname')  > maruproject.dump
+スキーマバックアップ
+pg_dumpall -h localhost -U ユーザ名 -c -s > 任意名.dump
+
+
+docker
+
+

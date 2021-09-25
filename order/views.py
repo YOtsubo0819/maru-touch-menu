@@ -12,7 +12,6 @@ class SelectView(generic.ListView):
     model = OrderMenu
 
     def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
         context = super(SelectView, self).get_context_data(**kwargs)
         context['category_name'] = OrderMenu.objects.values('category').distinct()
         return context
