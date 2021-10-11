@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-pcd2lmu*2-5(m&w8o!wdd%jm#se2uz^q&yfqgoe9=6x9@9*!nz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0']
-#ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = ['0.0.0.0']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'ordersite.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 
-"""
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -99,7 +99,7 @@ DATABASES = {
         'PORT': 5432
     }
 }
-
+"""
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 

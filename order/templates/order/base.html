@@ -9,7 +9,7 @@
 <body>
 {% block header %}
 <header>
-    <h1 class="topicon"><a href="{% url 'order:index' %}" style="color:#fff;">ロゴ画像</a></h1>
+    <h1 class="topicon"><a href="{% url 'order:index' %}" ><img src="{% static 'img/MARUロゴ.png' %}" height="70px"></a></h1>
     <nav>
         {% if user.is_authenticated %}
         <ul>

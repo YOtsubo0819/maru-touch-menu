@@ -6,7 +6,7 @@ from . import data
 # Create your views here.
 
 
-
+# メニュー選択画面
 class SelectView(generic.ListView):
     template_name = 'order/select.html'
     model = OrderMenu
@@ -76,26 +76,12 @@ class IndexView(generic.TemplateView):
 class IcView(generic.TemplateView):
     template_name = 'order/ic.html'
 
-class GocounterView(generic.TemplateView):
-    template_name = 'order/gocounter.html'
-
 class ReturnptView(generic.TemplateView):
     template_name = 'order/returnpt.html'
 
-class NewinputView(generic.TemplateView):
-    template_name = 'order/newinput.html'
 
-    def post(self, request, *args, **kwargs):
-        fullname = self.request.POST['fullname']
-        patientid = self.request.POST['patientid']
-        kana = self.request.POST['kana']
-        print(fullname, patientid,kana)
-        od = OrderDetail(patientid=patientid, ptname=fullname, kananame=kana)
-        od.save()
-        return redirect('/order/select/')
-
-class ReturninputView(generic.TemplateView):
-    template_name = 'order/returninput.html'
+class InputView(generic.TemplateView):
+    template_name = 'order/input.html'
 
     def post(self, request, *args, **kwargs):
         fullname = self.request.POST['fullname']

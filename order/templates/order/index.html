@@ -4,18 +4,10 @@
 {% load static%}
 {% if user.is_authenticated %}
 <div class="first-or-return-flex-box">
-    {% if user.username == "admin" or user.username == "marucounter" %}
-    <button type=“button” onclick="location.href='newinput/'" class="first-or-return-flex" id="first"><h1 style="font-size: 40px;">初診</h1></button>
-    {% else %}
-    <button type=“button” onclick="location.href='newpt/'" class="first-or-return-flex" id="first"><h1 style="font-size: 40px;">初診</h1></button>
-    {% endif %}
+    <button type=“button” onclick="location.href='input/'" class="first-or-return-flex" id="first"><h1 style="font-size: 40px;">初診</h1></button>
     <button type=“button” onclick="location.href='returnpt/'" class="first-or-return-flex" id="return"><h1 style="font-size: 40px;">再診</h1></button>
 </div>
 {% else %}
-
     <div><h1 style="text-align: center; margin-top: 300px;">ログインしてください</h1></div>
-
 {% endif %}
-
-
 {% endblock %}

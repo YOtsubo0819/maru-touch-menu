@@ -4,9 +4,9 @@
 {% load static%}
 {% if user.is_authenticated %}
 <div class="return-patient-input">
-    <form action="{% url 'order:newinput' %}" method="post">
+    <form action="{% url 'order:input' %}" method="post">
         {% csrf_token %}
-        <input type="hidden" name="forr" value="初診">
+        <input type="hidden" name="forr" value="再診">
         <div class="r-input-flex-box">
             <div class="r-i-flex"><label for="fullname">漢字氏名：<input type="text" name="fullname" id="fullname" size="35"></label></div>
             <div class="r-i-flex"><label for="tel">電話番号：<input type="number" name="tel" id="tel"></label></div>         
@@ -16,9 +16,10 @@
             <div class="r-i-flex"><label for="patientid">患者ID（任意）：<input type="text" name="patientid" id="patientid"></label></div>
         </div>
         <div class="s-or-b-flex">
-            <button type="button" onclick="location.href='/returnpt'" class="gobackone" ><h1>戻る</h1></button>
+            <button type="button" onclick="history.back()" class="gobackone" ><h1>戻る</h1></button>
             <input type="submit" value="注文へ進む">
         </div>
+        
     </form>
 </div>
 {% else %}
